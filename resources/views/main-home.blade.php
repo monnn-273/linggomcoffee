@@ -195,7 +195,7 @@
                          </div>
                          <div class="team-info">
                               <h3>Another person</h3>
-                              <p>Owner &amp; Manager</p>
+                              <p>Barista</p>
                          </div>
                     </div>
 
@@ -230,7 +230,7 @@
 
                     <div class="col-md-12 col-sm-12">
                          <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-                              <h2>Our Menus</h2>
+                              <h2>Our Products</h2>
                               <h4>Tea Time &amp; Dining</h4>
                          </div>
                     </div>
