@@ -49,16 +49,15 @@
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="#home" class="smoothScroll">Home</a></li>
-                         <li><a href="#about" class="smoothScroll">Blog</a></li>
-                         <li><a href="#team" class="smoothScroll">Founder</a></li>
-                         <li><a href="#menu" class="smoothScroll">Products</a></li>
+                         <li><a href="#home" class="smoothScroll">Tentang Kami</a></li>
+                         <li><a href="#about" class="smoothScroll">Pesan</a></li>
+                         <li><a href="#team" class="smoothScroll">Blog</a></li>
                          <li><a href="#contact" class="smoothScroll">Contact</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <a href="#footer" class="section-btn">Sign up</a>
-                        <a href="#footer" class="section-btn">Sign in</a>
+                        <a href="#footer" class="section-btn">Daftar</a>
+                        <a href="#footer" class="section-btn">Masuk</a>
                     </ul>
                </div>
 

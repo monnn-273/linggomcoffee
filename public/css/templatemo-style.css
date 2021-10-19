@@ -72,7 +72,7 @@ http://www.templatemo.com/tm-515-eatery
   }
 
   a:hover, a:active, a:focus {
-    color: #ce3232;
+    color: #695858;
     outline: none;
   }
 
@@ -142,7 +142,7 @@ http://www.templatemo.com/tm-515-eatery
   -----------------------------------------*/
 
   .section-btn {
-    background: #ce3232;
+    background: #865439;
     border-radius: 0;
     border: 0;
     color: #f9f9f9;
@@ -221,7 +221,7 @@ http://www.templatemo.com/tm-515-eatery
   }
 
   .custom-navbar .navbar-brand span {
-    color: #ce3232;
+    color: #865439;
   }
 
   .top-nav-collapse {
@@ -270,7 +270,7 @@ http://www.templatemo.com/tm-515-eatery
 
   .custom-navbar .nav li a:hover {
     background: transparent;
-    color: #ce3232;
+    color: #865439;
   }
 
   .custom-navbar .navbar-nav > li > a:hover,
@@ -280,7 +280,7 @@ http://www.templatemo.com/tm-515-eatery
 
   .custom-navbar .nav li.active > a {
     background-color: transparent;
-    color: #ce3232;
+    color: #865439;
   }
 
   .custom-navbar .navbar-toggle {
@@ -403,15 +403,15 @@ http://www.templatemo.com/tm-515-eatery
   }
 
   .slider .item-first {
-    background-image: url(../images/slider-image1.jpg);
+    background-image: url(../images/lico1.jpg);
   }
 
   .slider .item-second {
-    background-image: url(../images/slider-image2.jpg);
+    background-image: url(../images/lico2.jpeg);
   }
 
   .slider .item-third {
-    background-image: url(../images/slider-image3.jpg);
+    background-image: url(../images/lico3.jpg);
   }
 
   .slider .item-second .section-btn {
@@ -429,7 +429,7 @@ http://www.templatemo.com/tm-515-eatery
 
   .slider .item-third .section-btn:hover,
   .slider .item-third .section-btn:focus {
-    background: #ce3232;
+    background: #865439;
     border-color: transparent;
     color: #ffffff;
   }
@@ -780,7 +780,7 @@ http://www.templatemo.com/tm-515-eatery
   }
 
   .footer-open-hour {
-    background: #ce3232;
+    background: #865439;
     background: url('../images/footer-open-hour-bg.jpg') center center no-repeat;
     background-size: cover;
     border-radius: 20px;
@@ -838,7 +838,7 @@ http://www.templatemo.com/tm-515-eatery
 
   .social-icon li a {
     border-radius: 100px;
-    color: #ce3232;
+    color: #865439;
     font-size: 15px;
     width: 35px;
     height: 35px;
@@ -850,7 +850,7 @@ http://www.templatemo.com/tm-515-eatery
   }
 
   .social-icon li a:hover {
-    background: #ce3232;
+    background: #865439;
     color: #ffffff;
   }
 
