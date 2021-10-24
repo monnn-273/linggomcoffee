@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Login 10</title>
+  	<title>Linggom Coffee - Daftar</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -12,57 +12,129 @@
 	<link rel="stylesheet" href="{{asset('auth/css/style.css')}}">
 
 	</head>
-	<body class="img js-fullheight" style="background-image: url(auth/images/lico1.jpg);">
+	<body>
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 text-center mb-5">
-					<h2 class="heading-section">Login #10</h2>
+					<h1 class="heading-section">Linggom Coffee - Daftar</h2>
 				</div>
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-4">
-					<div class="login-wrap p-0">
-		      	<h3 class="mb-4 text-center">Have an account?</h3>
-		      	<form action="#" class="signin-form">
+					<div class="login-wrap py-5">
+		      	<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/5.png);"></div>
+		      	<h3 class="text-center mb-0">Horas!</h3>
+		      	<p class="text-center">Daftar untuk melanjutkan</p>
+						<form action="#" class="login-form">
 		      		<div class="form-group">
+		      			<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
 		      			<input type="text" class="form-control" placeholder="Username" required>
 		      		</div>
 	            <div class="form-group">
-	              <input id="password-field" type="password" class="form-control" placeholder="Password" required>
-	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-	            </div>
-	            <div class="form-group">
-	            	<button type="submit" class="form-control btn btn-primary submit px-3">Sign In</button>
+	            	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+	              <input type="password" class="form-control" placeholder="Password" required>
 	            </div>
 	            <div class="form-group d-md-flex">
-	            	<div class="w-50">
-		            	<label class="checkbox-wrap checkbox-primary">Remember Me
-									  <input type="checkbox" checked>
-									  <span class="checkmark"></span>
-									</label>
-								</div>
-								<div class="w-50 text-md-right">
-									<a href="#" style="color: #fff">Forgot Password</a>
+								<div class="w-100 text-md-right">
+									<a href="#">Forgot Password</a>
 								</div>
 	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="btn form-control btn-primary rounded submit px-3">Get Started</button>
+	            </div>
 	          </form>
-	          <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
-	          <div class="social d-flex text-center">
-	          	<a href="#" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Facebook</a>
-	          	<a href="#" class="px-2 py-2 ml-md-1 rounded"><span class="ion-logo-twitter mr-2"></span> Twitter</a>
+	          <div class="w-100 text-center mt-4 text">
+	          	<p class="mb-0">Don't have an account?</p>
+		          <a href="#">Sign Up</a>
 	          </div>
-		      </div>
+	        </div>
 				</div>
 			</div>
 		</div>
 	</section>
 
     <script src="{{asset('auth/js/jquery.min.js')}}"></script>
-  <script src="{{asset('auth/js/popper.js')}}"></script>
-  <script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('auth/js/main.js')}}"></script>
+    <script src="{{asset('auth/js/popper.js')}}"></script>
+    <script src="{{asset('auth/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('auth/js/main.js')}}"></script>
 
 	</body>
 </html>
 
+
+
+
+    <!-- <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Register') }}</div>
+
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+
+                            <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Register') }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
