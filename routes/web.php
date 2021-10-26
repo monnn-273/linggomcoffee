@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +19,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin_dashboard', [App\Http\Controllers\AdminController::class, 'index'])->middleware('role:admin');
+Route::get('/user_dashboard', [App\Http\Controllers\UserController::class, 'index'])->middleware('role:user');

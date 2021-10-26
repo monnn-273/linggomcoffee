@@ -1,130 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<title>Login V18</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{{asset('auth/images/icons/favicon.ico')}}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/bootstrap/css/bootstrap.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/fonts/Linearicons-Free-v1.0.0/icon-font.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/animate/animate.css')}}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/css-hamburgers/hamburgers.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/animsition/css/animsition.min.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/select2/select2.min.css')}}">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/vendor/daterangepicker/daterangepicker.css')}}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="auth/css/util.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{asset('auth/css/main.css')}}">
-<!--===============================================================================================-->
-</head>
-<body style="background-color: #666666;">
+  	<title>Linggom Coffee - Masuk</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
+	<link rel="stylesheet" href="{{asset('auth/css/style.css')}}">
 
-                <div class="login100-more" style="background-image: url('images/lico1.jpg');">
+</head>
+<body style="background-color: #D79A24">
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h1 class="heading-section">Linggom Coffee - Masuk</h1>
 				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-6">
+					<div class="login-wrap py-5">
+		      	<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/5.png);"></div>
+		      	<h3 class="text-center mb-0">H O R A S !</h3>
+		      	<p class="text-center">Masuk untuk melanjutkan</p>
 
-				<form class="login100-form validate-form">
-					<span class="login100-form-title p-b-43">
-						Login to continue
-					</span>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Email</span>
-					</div>
-					
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100"></span>
-						<span class="label-input100">Password</span>
-					</div>
 
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
+					<!-- FORM LOGIN -->
+					<form method="POST" class="login-form" action="{{ route('login') }}">
+					@csrf
+						<div class="form-group">
+							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
+							<input id="email" type="email" placeholder="Masukkan email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+								@error('email')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+						</div>
+						<div class="form-group">
+							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+							<input id="password" placeholder="Masukkan password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+								@error('password')
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $message }}</strong>
+									</span>
+								@enderror
+						</div>
+						<div class="w-100 text-md-left">
+							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+							<label class="form-check-label" for="remember">
+								{{ __('Remember Me') }}
 							</label>
 						</div>
-
-						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
+						<div class="form-group">
+							<button type="submit" class="btn form-control btn-primary rounded submit px-3">Masuk</button>
 						</div>
-					</div>
-			
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
-					</div>
-					
-					<div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							or sign up using
-						</span>
-					</div>
+						@if (Route::has('password.request'))
+							<div class="form-group d-md-flex">
+								<div class="w-100 text-md-right">
+									<a href="{{ route('password.request') }}">Forgot Password</a>
+								</div>
+							</div>
+                		@endif
+	          		</form>
+					<!-- AKHIR LOGIN FORM -->
 
-					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i class="fa fa-facebook-f" aria-hidden="true"></i>
-						</a>
-
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</a>
-					</div>
-				</form>
-
+	          <div class="w-100 text-center mt-4 text">
+	          	<p class="mb-0">Belum memiliki akun?</p>
+		          <a href="{{route ('register')}}">Daftar</a>
+	          </div>
+	        </div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	
+	</section>
 
-	
-	
-<!--===============================================================================================-->
-	<script src="{{asset('auth/vendor/jquery/jquery-3.2.1.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{asset('auth/vendor/animsition/js/animsition.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{asset('auth/vendor/bootstrap/js/popper.js')}}"></script>
-	<script src="{{asset('auth/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{asset('auth/vendor/select2/select2.min.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{asset('auth/vendor/daterangepicker/moment.min.js')}}"></script>
-	<script src="{{asset('auth/vendor/daterangepicker/daterangepicker.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{asset('auth/vendor/countdowntime/countdowntime.js')}}"></script>
-<!--===============================================================================================-->
-	<script src="{{asset('auth/js/main.js')}}"></script>
+	<script src="auth/js/jquery.min.js"></script>
+  	<script src="auth/js/popper.js"></script>
+  	<script src="auth/js/bootstrap.min.js"></script>
+  	<script src="auth/js/main.js"></script>
 
 </body>
 </html>
 
 
-<!-- 
-<div class="card-body">
+<!--<div class="card-body">
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
