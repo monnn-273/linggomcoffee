@@ -12,26 +12,20 @@
     <link rel="stylesheet" href="{{asset('auth/css/style.css')}}">
 </head>
 
-<body style="background-color: #D79A24">
+<body style="background-image: url({{asset('images/bg_4.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
-
-			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h1 class="heading-section">Linggom Coffee - Daftar</h1>
-				</div>
-			</div>
-
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-6">
 					<div class="login-wrap py-5">
-		      	        <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/5.png);"></div>
+		      	        <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
 		      	        <h3 class="text-center mb-0">H o r a s !</h3>
-		      	        <p class="text-center">Daftar untuk melanjutkan</p>
+		      	        <p class="text-center">Daftar untuk bergabung</p>
 
                           <!-- FORM PENDAFTARAN -->
                           <form method="POST" action="{{ route('register') }}" class="login-form">
-                            @csrf 
+                            @csrf
+                            <input type="text" name="role" value="user" hidden> 
 		      		        <div class="form-group">
 		      			        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
 		      			            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan nama Anda" required name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
@@ -63,14 +57,12 @@
 	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
                                 <input id="password-confirm" type="password"  placeholder="Konfirmasi kata sandi" class="form-control" name="password_confirmation" required autocomplete="new-password">
 	                        </div>
-
-                            <div class="form-group d-md-flex">
-                                <div class="w-100 text-md-left">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
+                            <br>
+                            <div class="form-group d-md-flex align-items-center justify-content container">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn form-control btn-primary rounded submit px-3">Daftar</button>
@@ -80,7 +72,7 @@
 
                         <div class="w-100 text-center mt-4 text">
                             <p class="mb-0">Sudah memiliki akun?</p>
-                            <a href="#">Masuk</a>
+                            <a href="{{route('login')}}">Login</a>
                         </div>
 	                </div>
 				</div>

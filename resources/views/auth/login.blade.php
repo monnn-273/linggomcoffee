@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  	<title>Linggom Coffee - Masuk</title>
+  	<title>{{config('app_name','Linggom Coffee')}} - Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -12,20 +12,16 @@
 	<link rel="stylesheet" href="{{asset('auth/css/style.css')}}">
 
 </head>
-<body style="background-color: #D79A24">
+
+<body style="background-image: url({{asset('images/bg_4.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="col-md-6 text-center mb-5">
-					<h1 class="heading-section">Linggom Coffee - Masuk</h1>
-				</div>
-			</div>
-			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-6">
 					<div class="login-wrap py-5">
-		      	<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/5.png);"></div>
-		      	<h3 class="text-center mb-0">H O R A S !</h3>
-		      	<p class="text-center">Masuk untuk melanjutkan</p>
+		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
+		      			<h3 class="text-center mb-0">H O R A S !</h3>
+		      			<p class="text-center">Masuk untuk melanjutkan</p>
 
 
 					<!-- FORM LOGIN -->
@@ -49,7 +45,8 @@
 									</span>
 								@enderror
 						</div>
-						<div class="w-100 text-md-left">
+						<br>
+						<div class="form-group d-md-flex align-items-center justify-content container">
 							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 							<label class="form-check-label" for="remember">
 								{{ __('Remember Me') }}
@@ -62,7 +59,7 @@
 						@if (Route::has('password.request'))
 							<div class="form-group d-md-flex">
 								<div class="w-100 text-md-right">
-									<a href="{{ route('password.request') }}">Forgot Password</a>
+									<a href="{{ route('password.request') }}">Forgot Your Password?</a>
 								</div>
 							</div>
                 		@endif

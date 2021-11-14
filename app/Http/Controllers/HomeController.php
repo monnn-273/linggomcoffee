@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use app\Models\Product;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,8 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function index() {
+        $products = Product::paginate(3);
+        return view('administrator.dashboard', compact('products'));
     }
 }
