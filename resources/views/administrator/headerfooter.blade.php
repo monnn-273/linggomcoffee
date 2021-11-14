@@ -26,8 +26,21 @@
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="{{asset('images/logo.png')}}" class="navbar-brand-img" alt="...">
-          Administrator
+          <table>
+            <tr>
+              <td>
+                <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main" >
+                  <div class="sidenav-toggler-inner">
+                    <i class="fa fa-bars"></i>
+                  </div>
+                </div>
+              </td>
+              <td>
+                  <img src="{{asset('images/logo.png')}}" class="navbar-brand-img" alt="...">
+                  Administrator
+              </td>
+            </tr>
+          </table>
         </a>
       </div>
       <div class="navbar-inner">
@@ -69,7 +82,7 @@
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
               <!-- Sidenav toggler -->
-              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main">
+              <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin" data-target="#sidenav-main" >
                 <div class="sidenav-toggler-inner">
                   <i class="sidenav-toggler-line"></i>
                   <i class="sidenav-toggler-line"></i>
