@@ -158,7 +158,7 @@
 					<p class="price"><span>@currency($product->harga)</span></p>
 					<p>
 						<!-- Cek apakah produk tersebut sudah ada di ada di database cart atas nama pengguna yg sedang login -->					
-							<button type="submit" name="add" class="btn btn-primary btn-primary" value="Add to cart">Added to Cart</button>					
+						<button type="submit" name="add" class="btn btn-outline-primary btn-primary">Add to Cart</button>	
 					</p>
 				</div>
 			</div>

@@ -13,6 +13,7 @@ class UserController extends Controller
     }
 
     public function index() {
+      
       $products = Product::paginate(4);
       return view('user.dashboard',compact('products'));
     }

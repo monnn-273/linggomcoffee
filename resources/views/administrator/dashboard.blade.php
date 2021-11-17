@@ -90,14 +90,18 @@
                     <td>
                       {{$product->stock}}
                     </td>
-                    <td colspan="3">
+                    <td>
                       <a href="/admin/detail_produk?product_id={{$product->id}}" class="btn btn-success btn-sm small d-inline">Edit</button>
+                    </td>
+                    <td>
                       <form action="{{__('/admin/hapus_produk')}}" method="post">
                         @csrf
                         <input type="text" name="produk_id" value="{{$product->id}}" hidden>
-                        <button type="submit" class="btn btn-danger btn-sm d-inline">Hapus</button>
+                        <button type="submit" class="btn btn-danger btn-sm d-inline">Hapus &nbsp;</button>
                       </form>
-                      <a href="/admin/detail_produk?product_id={{$product->id}}">Selengkapnya</a>
+                    </td>
+                    <td>
+                      <a href="/admin/detail_produk?product_id={{$product->id}}">Lihat detail</a>
                     </td>
                   </tr>
                   @endforeach

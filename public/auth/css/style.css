@@ -8144,7 +8144,7 @@ a {
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;
-  color: #b689b0; }
+  color: #865439; }
   a:hover, a:focus {
     text-decoration: none !important;
     outline: none !important;
@@ -8227,7 +8227,7 @@ h1, h2, h3, h4, h5,
   box-shadow: none;
   border-radius: 0;
   border: none;
-  border-bottom: 1px solid #b689b0;
+  border-bottom: 1px solid #865439;
   padding-left: 30px;
   padding-right: 0;
   letter-spacing: 1px;
