@@ -13,13 +13,13 @@
 
 </head>
 
-<body style="background-image: url({{asset('images/bg_4.jpg')}});">
+<body style="background-image: url({{asset('images/bg_2.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-6">
 					<div class="login-wrap py-5">
-		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url({{asset('images/lico-black-5.png')}});"></div>
+		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
 		      			<h3 class="text-center mb-0">H O R A S !</h3>
 		      			<p class="text-center">Link untuk reset password Anda akan dikirim ke alamat email yang Anda gunakan saat mendaftar.</p>
 
@@ -30,10 +30,10 @@
                         </div>
                     @endif
 
-					<!-- FORM LOGIN -->
+					<!-- FORM ALAMAT EMAIL -->
 					<form method="POST" class="login-form" action="{{ route('password.email') }}">
 					    @csrf
-                        <label for="email">Email</label>
+                        <label for="email">Alamat Email</label>
 						<div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
 							<input id="email" type="email" placeholder="Masukkan email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -52,7 +52,7 @@
 					<!-- AKHIR LOGIN FORM -->
 
 	          <div class="w-100 text-center mt-4 text">
-		          <a href="{{route ('register')}}">Daftar</a> &nbsp; |  &nbsp;
+		          <a href="{{route ('register')}}">Daftar</a> &nbsp;&nbsp; |  &nbsp;&nbsp;
                   <a href="{{route ('login')}}">Login</a>
 	          </div>
 	        </div>

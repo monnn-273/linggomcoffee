@@ -1,5 +1,9 @@
 @extends('administrator.headerfooter')
 
+@section('title')
+  <title>{{config('app_name','Linggom Coffee')}} - Dashboard </title>
+@endsection('title')
+
 @section('sidenav')
   <li class="nav-item">
     <a class="nav-link active" href="{{__('/admin/dashboard')}}">
@@ -8,7 +12,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{__('/admin/profile')}}">
+    <a class="nav-link" href="{{__('/admin/myprofile')}}">
       <i class="ni ni-single-02 text-yellow"></i>
       <span class="nav-link-text">Profile</span>
     </a>
@@ -22,13 +26,13 @@
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/order_list')}}">
       <i class="ni ni-bullet-list-67 text-default"></i>
-      <span class="nav-link-text">Order List</span>
+      <span class="nav-link-text">Daftar Pesanan</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/history')}}">
-      <i class="ni ni-archive-2 text-default"></i>
-      <span class="nav-link-text">History Penjualan</span>
+      <i class="fa fa-history" aria-hidden="true"></i>
+      <span class="nav-link-text">Riwayat Penjualan</span>
     </a>
   </li>
 @endsection('sidenav')
@@ -56,11 +60,6 @@
               <a href="{{__('/admin/tambah_produk')}}" class="btn btn-success ">
                 <i class="ni ni-fat-add"></i>
                 Tambah Produk Baru
-              </a>
-
-              <a href="#" class="btn btn-warning">
-                <i class="ni ni-fat-add"></i>
-                Tambah Administrator Baru
               </a>
             <br><br><br>
             <table class="table align-items-center table-flush">
@@ -91,17 +90,26 @@
                       {{$product->stock}}
                     </td>
                     <td>
-                      <a href="/admin/detail_produk?product_id={{$product->id}}" class="btn btn-success btn-sm small d-inline">Edit</button>
-                    </td>
-                    <td>
+                      <div class="btn-group-horizontal">
+                        <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen-square" aria-hidden="true"></i>&nbsp;Edit</a>
+                        <a class="btn btn-danger btn-lg" href="{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Hapus</a>
+                        <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-info-circle"></i>&nbsp;Detail</a>
+                      </div>
+                      {{-- <a href="/admin/detail_produk?product_id={{$product->id}}">
+                        <button class="btn btn-success btn-sm small d-inline">Edit</button>
+                      </a>
                       <form action="{{__('/admin/hapus_produk')}}" method="post">
                         @csrf
                         <input type="text" name="produk_id" value="{{$product->id}}" hidden>
-                        <button type="submit" class="btn btn-danger btn-sm d-inline">Hapus &nbsp;</button>
+                        <button type="submit" class="btn btn-danger btn-sm d-inline">Hapus</button>
                       </form>
-                    </td>
-                    <td>
-                      <a href="/admin/detail_produk?product_id={{$product->id}}">Lihat detail</a>
+                      <a href="/admin/detail_produk?product_id={{$product->id}}">
+                        <button class="btn btn-warning btn-sm small d-inline"> Selengkapnya</button>
+                      </a> --}}
+                      {{-- <div class="btn-group-vertical">
+                        <a class="btn btn-warning btn-sm" href="/admin/detail_produk?product_id={{$product->id}}">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="barang/{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')">Hapus</a>
+                    </div> --}}
                     </td>
                   </tr>
                   @endforeach

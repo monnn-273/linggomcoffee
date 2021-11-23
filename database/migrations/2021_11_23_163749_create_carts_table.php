@@ -19,9 +19,9 @@ class CreateCartsTable extends Migration
             $table->foreignId('customerId')->constrained('users');
             $table->integer('payment');
             $table->integer('quantity')->default(1);
-            $table->integer('ongkos_kirim')->default(0);
-            $table->integer('payment_status')->default(1);
-            $table->string('shipping_status')->default('belum dikirim');
+            // $table->integer('ongkos_kirim')->default(0);
+            // $table->integer('payment_status')->default(1);
+            // $table->string('shipping_status')->default('belum dikirim');
             $table->timestamps();
         });
     }

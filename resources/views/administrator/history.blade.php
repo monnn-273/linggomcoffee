@@ -1,5 +1,9 @@
 @extends('administrator.headerfooter')
 
+@section('title')
+<title>{{config('app_name','Linggom Coffee')}} - Riwayat Penjualan </title>
+@endsection('title')
+
 @section('sidenav')
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/dashboard')}}">
@@ -8,7 +12,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{__('/admin/profile')}}">
+    <a class="nav-link" href="{{__('/admin/myprofile')}}">
       <i class="ni ni-single-02 text-yellow"></i>
       <span class="nav-link-text">Profile</span>
     </a>
@@ -22,13 +26,13 @@
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/order_list')}}">
       <i class="ni ni-bullet-list-67 text-default"></i>
-      <span class="nav-link-text">Order List</span>
+      <span class="nav-link-text">Daftar Pesanan</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link  active" href="{{__('/admin/history')}}">
-      <i class="ni ni-archive-2 text-default"></i>
-      <span class="nav-link-text">History Penjualan</span>
+      <i class="fa fa-history" aria-hidden="true"></i>
+      <span class="nav-link-text">Riwayat Penjualan</span>
     </a>
   </li>
 @endsection('sidenav')

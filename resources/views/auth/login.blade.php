@@ -13,15 +13,17 @@
 
 </head>
 
-<body style="background-image: url({{asset('images/bg_4.jpg')}});">
+<body style="background-image: url({{asset('images/bg_1.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-6">
 					<div class="login-wrap py-5">
+						<a href="{{__('/')}}">
 		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
+						</a>
 		      			<h3 class="text-center mb-0">H O R A S !</h3>
-		      			<p class="text-center">Masuk untuk melanjutkan</p>
+		      			<p class="text-center">Silahkan masuk untuk melanjutkan! </p>
 
 
 					<!-- FORM LOGIN -->
@@ -29,7 +31,7 @@
 					@csrf
 						<div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
-							<input id="email" type="email" placeholder="Masukkan email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+							<input id="email" type="email" placeholder="Masukkan Email Anda..." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 								@error('email')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
@@ -38,15 +40,16 @@
 						</div>
 						<div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-							<input id="password" placeholder="Masukkan password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+							<input id="password" placeholder="Masukkan Kata Sandi..." type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 								@error('password')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 								@enderror
 						</div>
-						<br>
-						<div class="form-group d-md-flex align-items-center justify-content container">
+						<div class="form-group container">	
+							<div class="icon d-flex align-items-center justify-content-center"><span class=""></span></div>
+							&nbsp; &nbsp;
 							<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 							<label class="form-check-label" for="remember">
 								{{ __('Remember Me') }}

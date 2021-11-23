@@ -12,13 +12,15 @@
     <link rel="stylesheet" href="{{asset('auth/css/style.css')}}">
 </head>
 
-<body style="background-image: url({{asset('images/bg_4.jpg')}});">
+<body style="background-image: url({{asset('images/bg_1.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-6">
 					<div class="login-wrap py-5">
-		      	        <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
+                        <a href="{{__('/')}}">
+		      			    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
+						</a>
 		      	        <h3 class="text-center mb-0">H o r a s !</h3>
 		      	        <p class="text-center">Daftar untuk bergabung</p>
 
@@ -28,7 +30,7 @@
                             <input type="text" name="role" value="user" hidden> 
 		      		        <div class="form-group">
 		      			        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-		      			            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan nama Anda" required name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+		      			            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan Nama Anda..." required name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -37,7 +39,7 @@
 		      		        </div>
                             <div class="form-group">
                                 <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
-                                    <input id="email" type="email" placeholder="Email : example@exp.xyz"class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email" placeholder="Masukkan Email Anda..."class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -46,7 +48,7 @@
 		      		        </div>
 	                        <div class="form-group">
 	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                <input id="password" placeholder="Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" placeholder="Kata Sandi Baru" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -55,10 +57,12 @@
 	                        </div>
                             <div class="form-group">
 	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                <input id="password-confirm" type="password"  placeholder="Konfirmasi kata sandi" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password"  placeholder="Konfirmasi Kata Sandi" class="form-control" name="password_confirmation" required autocomplete="new-password">
 	                        </div>
                             <br>
-                            <div class="form-group d-md-flex align-items-center justify-content container">
+                            <div class="form-group container">
+                                <div class="icon d-flex align-items-center justify-content-center"><span class=""></span></div>
+                                &nbsp; &nbsp;
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                 <label class="form-check-label" for="remember">
                                     {{ __('Remember Me') }}
@@ -87,7 +91,6 @@
 
 </body>
 </html>
-
 
 
 

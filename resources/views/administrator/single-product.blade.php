@@ -1,5 +1,10 @@
 @extends('administrator.headerfooter')
 
+@section('title')
+<title>{{config('app_name','Linggom Coffee')}} - Detail Produk </title>
+@endsection('title')
+
+
 @section('sidenav')
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/dashboard')}}">
@@ -8,7 +13,7 @@
     </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="{{__('/admin/profile')}}">
+    <a class="nav-link" href="{{__('/admin/myprofile')}}">
       <i class="ni ni-single-02 text-yellow"></i>
       <span class="nav-link-text">Profile</span>
     </a>
@@ -22,13 +27,13 @@
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/order_list')}}.html">
       <i class="ni ni-bullet-list-67 text-default"></i>
-      <span class="nav-link-text">Order List</span>
+      <span class="nav-link-text">Daftar Pesanan</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/history')}}">
-      <i class="ni ni-archive-2 text-default"></i>
-      <span class="nav-link-text">History Penjualan</span>
+      <i class="fa fa-history" aria-hidden="true"></i>
+      <span class="nav-link-text">Riwayat Penjualan</span>
     </a>
   </li>
 @endsection('sidenav')
@@ -51,7 +56,7 @@
             </div>
             <div class="card-body">
               <!-- UPDATE FORM -->
-              <form action="{{__('/admin/update_produk')}}" method="post" enctype="multipart/form-data">
+              <form action="/admin/{{ $product->id }}/update_produk" method="POST" class="needs-validation" enctype="multipart/form-data">
               @csrf
                 <input type="text" value="{{$product->id}}" name="produk_id" hidden>
                 <h6 class="heading-small text-muted mb-4">Gambar Produk</h6>
@@ -59,7 +64,7 @@
                 <table class="table table-flush text-center">
                   <tr>       
                       <td colspan="2">
-                        <img src="../images/{{$product->gambar}}" alt="gambar_product" style="width:400px; height:440px">
+                        <img src="{{ $product->getGambar() }}" alt="gambar_product" style="width:400px; height:440px">
                       </td>
                   </tr>
                 </table>
@@ -82,13 +87,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-product-name">Nama Produk</label>
-                        <input type="text" id="input-product-name" class="form-control" placeholder="nama produk" value="{{$product->nama_produk}}" name="nama_produk">
+                        <input type="text" id="input-product-name" class="form-control" value="{{ $product->nama_produk }}" name="nama_produk">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="harga">Harga</label>
-                        <input type="string" id="harga" class="form-control" placeholder="contoh: 25000" value="{{$product->harga}}" name="harga">
+                        <input type="string" id="harga" class="form-control" value="{{ $product->harga }}" name="harga">
                       </div>
                     </div>
                   </div>
@@ -96,19 +101,82 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="stock">Stock</label>
-                        <input type="number" id="stock" class="form-control" placeholder="contoh: 20" value="{{$product->stock}}" name="stock">
+                        <input type="number" id="stock" class="form-control" value="{{ $product->stock }}" name="stock">
                       </div>
                     </div>
                   </div>
                 </div>
                 <hr class="my-4" />
+                <h6 class="heading-small text-muted mb-4">
+                  Keterangan Tambahan
+                </h6>
+                  {{-- <div class="pl-lg-4"> --}}
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="waktu-preorder">Waktu Preorder (hari)</label>
+                      <input type="text" id="waktu-preorder" name="masa_preorder" class="form-control" value="{{ $product->masa_preorder }}" name="waktu_preorder">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="berat">Berat per kemasan (gram)</label>
+                      <input type="text" id="berat" name="berat" class="form-control" value="{{ $product->berat }}">
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                      <label class="form-control-label" for="input-last-name">Kondisi Produk</label>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kondisi_produk" value="full-washed" id="full-washed"
+                        @if (  $product->kondisi_produk == "full-washed" )
+                            checked
+                        @endif>
+                        <label class="form-check-label" for="full-washed">
+                          Full-washed
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kondisi_produk" value="semi-washed" id="semi-washed"
+                        @if (  $product->kondisi_produk == "semi-washed" )
+                            checked
+                        @endif>
+                        <label class="form-check-label" for="semi-washed">
+                          Semi-washed
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kondisi_produk" value="bubuk-kopi" id="bubuk-kopi"
+                        @if (  $product->kondisi_produk == "bubuk-kopi" )
+                            checked
+                        @endif>
+                        <label class="form-check-label" for="bubuk-kopi">
+                          Bubuk Kopi
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="kondisi_produk" value="kopi-kemasan" id="kopi-kemasan"
+                        @if (  $product->kondisi_produk == "kopi-kemasan" )
+                            checked
+                        @endif>
+                        <label class="form-check-label" for="kopi-kemasan">
+                          Kopi Kemasan
+                        </label>
+                      </div>
+                        {{-- <label class="form-check-label" for="flexCheckDefault">
+                          Keterangan Lain
+                        </label>
+                        <input type="text" class="form-control" > --}}
+                    </div>
+                  </div>
+                </div>
 
                 <!-- Description -->
                 <h6 class="heading-small text-muted mb-4">Deskripsi Produk</h6>
                 <div class="pl-lg-4">
                   <div class="form-group">
                     <label class="form-control-label">Deskripsikan produk Anda</label>
-                    <textarea rows="10" col="30" class="form-control" placeholder="Kata-kata yang menjelaskan produk Anda secara singkat, padat, dan jelas" name="deskripsi">{{$product->deskripsi}}</textarea>
+                    <textarea rows="10" col="30" class="form-control" placeholder="Kata-kata yang menjelaskan produk Anda secara singkat, padat, dan jelas" name="deskripsi">{{ $product->deskripsi }}</textarea>
                   </div>
                 </div>
 
@@ -116,11 +184,11 @@
                   <button type="submit" class="btn btn-success d-inline">Simpan Perubahan</button>
               </form>
               <!-- END UPDATE FORM-->
-                <form action="{{__('/admin/hapus_produk')}}" method="post">
-                  @csrf
-                  <input type="text" value="{{$product->id}}" name="produk_id" hidden>
-                  <button type="submit" class="btn btn-danger d-inline show_confirm" data-toggle="tooltip" title='Delete'>Hapus produk</button>
-                </form>
+              <form action="{{__('/admin/hapus_produk')}}" method="post">
+                @csrf
+                <input type="text" value="{{ $product->id }}" name="produk_id" hidden>
+                <button type="submit" class="btn btn-danger d-inline show_confirm" data-toggle="tooltip" title='Delete'>Hapus produk</button>
+              </form>
               </div>
             </div>
           </div>

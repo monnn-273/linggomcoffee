@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{asset('css/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/icomoon.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -38,28 +39,31 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item active"><a href="{{__('/user/dashboard')}}" class="nav-link">Home</a></li>
-              <li class="nav-item"><a href="/user/dashboard#about" class="nav-link">About</a></li>
+              <li class="nav-item"><a href="/user/dashboard#about" class="nav-link">Tentang</a></li>
               <li class="nav-item"><a href="{{__('/user/showprofile')}}" class="nav-link">Profile</a></li>
-	          <li class="nav-item"><a href="{{__('/user/product')}}" class="nav-link">Product</a></li>
+	            <li class="nav-item"><a href="{{__('/user/product')}}" class="nav-link">Produk</a></li>
+              <li class="nav-item"><a href="{{__('/user/history')}}" class="nav-link">Riwayat Pembelian</a></li>
 
-            <!-- cart -->
-	          <li class="nav-item cart"><a href="/user/cart?customerId={{Auth::user()->id}}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
-            
-            <!-- dropdown menu -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-person"></i> {{Auth::user()->name}}</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <a class="dropdown-item" href="shop.html">My profile</a>
-                <a class="dropdown-item" href="product-single.html">Cart</a>
-                <a class="dropdown-item">
-                  <form id="logout-form" action="{{route('logout')}}" method="POST">
-                      <span><button class="btn btn-primary" type="submit">Logout</button></span>
-                      @csrf
-                  </form>
-                </a>
-              </div>
-          </li>
-            </ul>
+              <!-- cart -->
+              <li class="nav-item cart"><a href="/user/cart?customerId={{Auth::user()->id}}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+              
+              <!-- dropdown menu -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="room.html" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icon-person"></i> {{Auth::user()->name}}</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="{{__('/user/myprofile')}}">Profile saya</a>
+                  <a class="dropdown-item" href="/user/cart?customerId={{Auth::user()->id}}">Keranjang</a>
+                  <a class="dropdown-item" href="/user/history?customerId={{Auth::user()->id}}">Riwayat Pembelian</a>
+                  <hr>
+                  <a class="dropdown-item text-center">
+                    <form id="logout-form" action="{{route('logout')}}" method="POST">
+                        <span><button class="btn btn-primary" type="submit"> <i class="fa fa-sign-out"></i>&nbsp;Logout</button></span>
+                        @csrf
+                    </form>
+                  </a>
+                </div>
+              </li>
+          </ul>
 	      </div>
 		  </div>
 	  </nav>

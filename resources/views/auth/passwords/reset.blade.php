@@ -13,47 +13,58 @@
 
 </head>
 
-<body style="background-image: url({{asset('images/bg_4.jpg')}});">
+<body style="background-image: url({{asset('images/bg_1.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-6">
 					<div class="login-wrap py-5">
-		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
+		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url({{asset('../images/lico-black-5.png')}});"></div>
 		      			<h3 class="text-center mb-0">H O R A S !</h3>
-		      			<p class="text-center">Lupa password?</p>
+		      			<p class="text-center">Ubah Kata Sandi</p>
 
 
 					<!-- FORM LOGIN -->
 					<form method="POST" class="login-form" action="{{ route('password.update') }}">
 					@csrf
                     <input type="hidden" name="token" value="{{ $token }}">
-
+                        <label for="email"> Alamat Email</label>
 						<div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
-                            <label for="email">Email</label>
-							<input id="email" type="email" placeholder="Masukkan email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+							<input id="email" type="email" placeholder="Masukkan Email Anda..." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 								@error('email')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 								@enderror
 						</div>
+
+                        <label for="email"> Ubah Kata Sandi</label>
 						<div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-							<input id="password" placeholder="Masukkan password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+							<input id="password" placeholder="Buat Kata Sandi Baru" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 								@error('password')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
 									</span>
 								@enderror
 						</div>
+
+                        <label for="confirm-password">Konfirmasi Kata Sandi</label>
                         <div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                            <label for="confirm-password">Confirm Password</label>
-							<input id="confirm-password" placeholder="Konfirmasi password" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
+							<input id="confirm-password" placeholder="Konfirmasi Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
 						</div>
 						<br>
+
+                        <div class="form-group container">
+                            <div class="icon d-flex align-items-center justify-content-center"><span class=""></span></div>
+                            &nbsp; &nbsp;
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label class="form-check-label" for="remember">
+                                {{ __('Remember Me') }}
+                            </label>
+                        </div>
 
 						<div class="form-group">
 							<button type="submit" class="btn form-control btn-primary rounded submit px-3">Reset Password</button>
@@ -63,7 +74,7 @@
 					<!-- AKHIR LOGIN FORM -->
 
 	          <div class="w-100 text-center mt-4 text">
-		          <a href="{{route ('register')}}">Daftar</a>
+		          <a href="{{route ('register')}}">Daftar</a> &nbsp;&nbsp;| &nbsp;&nbsp;
                   <a href="{{route ('login')}}">Login</a>
 	          </div>
 	        </div>

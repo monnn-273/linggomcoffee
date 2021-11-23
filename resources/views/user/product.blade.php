@@ -1,12 +1,7 @@
-@extends('guest.app')
-
-@section('navbar')
-    <li class="nav-item"><a href="{{__('/')}}" class="nav-link">Home</a></li>
-    <li class="nav-item"><a href="{{__('/#about')}}" class="nav-link">Tentang</a></li>
-    <li class="nav-item"><a href="{{__('/profile')}}" class="nav-link">Profile</a></li>
-    <li class="nav-item active"><a href="{{__('/products')}}" class="nav-link">Produk</a></li>
-    <li class="nav-item"><a href="#contact" class="nav-link">Kontak</a></li>
-@endsection
+@extends('user.headerfooter')
+@section('title')
+    <title>{{config('app_name','Linggom Coffee')}} - Cart </title>
+@endsection('title')
 
 @section('content')
 
@@ -100,7 +95,15 @@
                                                         <h3><a href="">{{$product->nama_produk}}</a></h3>
                                                         <p>{{$product->deskripsi}}.</p>
                                                         <p class="price"><span>@currency($product->harga)</span></p>
-                                                        <p><a href="{{route('login')}}" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+                                                        <p>
+                                                            <form action="{{__('/user/addToCart')}}" method="POST">
+                                                                @csrf
+                                                                <input type="text" value="{{$product->id}}" name="productId" hidden>
+                                                                <input type="text" value="{{Auth::user()->id}}" name="customerId" hidden>
+                                                                <input type="text" value="{{$product->harga}}" name="price" hidden>
+                                                                <button type="submit" class="btn btn-primary btn-outline-primary">Add to cart</button>
+                                                            </form>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>   

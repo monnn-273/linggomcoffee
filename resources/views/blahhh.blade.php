@@ -20,3 +20,24 @@
                             <a href="{{__('/login')}}" class="section-btn">Masuk</a>
                         </ul>
                     @endauth
+
+                    Schema::create('carts', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('productId')->constrained('products');
+            $table->foreignId('customerId')->constrained('users');
+            $table->integer('payment');
+            $table->integer('quantity')->default(1);
+            // $table->integer('ongkos_kirim')->default(0);
+            // $table->integer('payment_status')->default(1);
+            // $table->string('shipping_status')->default('belum dikirim');
+            $table->timestamps();
+        });
+
+
+        public function customer(){
+        return $this->belongsTo(User::class,'customerId');
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class,'productId');
+     }
