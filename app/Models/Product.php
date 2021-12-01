@@ -9,7 +9,14 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function carts(){
+
+    public function carts()
+    {
         return $this->hasMany(Cart::class);
+    }
+
+    public function cartDetail()
+    {
+        return $this->hasMany(CartDetail::class);
     }
 }

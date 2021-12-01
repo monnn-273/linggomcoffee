@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{asset('auth/css/style.css')}}">
 </head>
 
-<body style="background-image: url({{asset('images/bg_1.jpg')}});">
+<body style="background-image: url({{asset('images/bg_4.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -30,7 +30,7 @@
                             <input type="text" name="role" value="user" hidden> 
 		      		        <div class="form-group">
 		      			        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-		      			            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Masukkan Nama Anda..." required name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+		      			            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap" required name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
 		      		        </div>
                             <div class="form-group">
                                 <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
-                                    <input id="email" type="email" placeholder="Masukkan Email Anda..."class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email" placeholder="Alamat Email"class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
 		      		        </div>
 	                        <div class="form-group">
 	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                <input id="password" placeholder="Kata Sandi Baru" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" placeholder="Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

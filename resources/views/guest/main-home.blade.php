@@ -20,11 +20,11 @@
 
 			<div class="col-md-8 col-sm-12 text-center ftco-animate">
 				<span class="subheading">Welcome</span>
-				<h1 class="mb-4">The Best Coffee Testing Experience</h1>
-				<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				<h1 class="mb-4">Dairi Pride, Sidikalang Coffee</h1>
+				<p class="mb-4 mb-md-5">Produk kopi pilihan terbaik, hanya dari Kota Kopi.</p>
 				<p>
-					<a href="{{route('register')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
-					<a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
+					<a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+					<a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
 				</p>
 			</div>
 
@@ -40,11 +40,11 @@
 
 			<div class="col-md-8 col-sm-12 text-center ftco-animate">
 				<span class="subheading">Welcome</span>
-				<h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-				<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				<h1 class="mb-4">Aroma &amp; Rasa Kopi yang Khas</h1>
+				<p class="mb-4 mb-md-5">Kopi Sidikalang terkenal akan aroma dan rasanya yang membuat kecanduan. Tentunya seluruh produk di Linggom Coffee menggunakan kopi asli Sidikalang!</p>
 				<p>
-					<a href="{{route('register')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
-					<a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
+					<a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+					<a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
 				</p>
 			</div>
 
@@ -60,11 +60,11 @@
 
 			<div class="col-md-8 col-sm-12 text-center ftco-animate">
 				<span class="subheading">Welcome</span>
-				<h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-				<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+				<h1 class="mb-4">Proses Pengolahan yang Alami dan Tradisional!</h1>
+				<p class="mb-4 mb-md-5">Mulai dari penjemuran, penggilingan, penggongsengan, dan pengemasan dilakukan secara alami dan melibatkan stakeholder dari hulu ke hilir.</p>
 				<p>
-					<a href="{{route('register')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
-					<a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
+					<a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+					<a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
 				</p>
 			</div>
 
@@ -113,7 +113,7 @@
 							yaitu para petani lokal. Ke depannya, melalui usaha ini, Saya berharap semua pihak yang terlibat dari hulu ke hilir dapat memiliki value 
 							lebih dan menjadi lebih sejahtera."
 						</p>
-						<p><a href="{{__('/profiles')}}" class="btn btn-primary btn-outline-primary px-4 py-3">Mereka yang terlibat</a></p>
+						<p><a href="{{__('/profile')}}" class="btn btn-primary btn-outline-primary px-4 py-3">Mereka yang terlibat</a></p>
 					</div>
 				</div>
 

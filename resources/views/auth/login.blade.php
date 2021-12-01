@@ -13,7 +13,7 @@
 
 </head>
 
-<body style="background-image: url({{asset('images/bg_1.jpg')}});">
+<body style="background-image: url({{asset('images/bg_4.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
@@ -31,7 +31,7 @@
 					@csrf
 						<div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
-							<input id="email" type="email" placeholder="Masukkan Email Anda..." class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+							<input id="email" type="email" placeholder="Alamat Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 								@error('email')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
 						</div>
 						<div class="form-group">
 							<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-							<input id="password" placeholder="Masukkan Kata Sandi..." type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+							<input id="password" placeholder="Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 								@error('password')
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $message }}</strong>

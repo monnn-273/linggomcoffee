@@ -24,7 +24,8 @@
                             <h1 class="mb-4">The Best Coffee Testing Experience</h1>
                             <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                             <p>
-                                <a href="{__('/user/dashboard')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Home</a>
+                                <a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+					            <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
                             </p>
                         </div>
                     </div>
@@ -41,7 +42,8 @@
                             <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
                             <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                             <p>
-                                <a href="{{__('/user/dashboard')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Home</a>
+                                <a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+					            <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
                             </p>
                         </div>
                     </div>
@@ -59,7 +61,8 @@
                             <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
                             <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
                             <p> 
-                                <a href="{{__('/user/dashboard')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Home</a>
+                                <a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+                                <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
                             </p>
                         </div>
                     </div>

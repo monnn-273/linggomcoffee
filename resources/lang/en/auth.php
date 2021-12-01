@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
+    'failed' => 'Email atau kata sandi Anda tidak sesuai.',
+    'password' => 'Kata sandi anda tidak sesuai.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'required' => 'Data pada field ini harus diisi',
+    'required' => 'Data ini harus diisi.',
     
 
 ];

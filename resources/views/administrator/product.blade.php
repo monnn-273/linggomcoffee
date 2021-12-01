@@ -14,25 +14,30 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/myprofile')}}">
-      <i class="ni ni-single-02 text-yellow"></i>
-      <span class="nav-link-text">Profile</span>
+      <i class="ni ni-single-02 text-primary"></i>
+      <span class="nav-link-text">Profile Saya</span>
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="{{__('/admin/users')}}">
+      <i class="fa fa-user-friends text-primary"></i>
+      <span class="nav-link-text">Pengguna</span>
+    </a>
+  <li class="nav-item">
     <a class="nav-link active" href="{{__('/admin/produk')}}">
-      <i class="ni  ni-bag-17 text-default"></i>
-      <span class="nav-link-text">Products</span>
+      <i class="ni  ni-bag-17 text-primary"></i>
+      <span class="nav-link-text">Produk</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/order_list')}}">
-      <i class="ni ni-bullet-list-67 text-default"></i>
+      <i class="ni ni-bullet-list-67 text-primary"></i>
       <span class="nav-link-text">Daftar Pesanan</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/history')}}">
-      <i class="fa fa-history" aria-hidden="true"></i>
+      <i class="fa fa-history text-primary" aria-hidden="true"></i>
       <span class="nav-link-text">Riwayat Penjualan</span>
     </a>
   </li>
@@ -53,6 +58,17 @@
                   <div class="col">
                     <h6 class="text-uppercase text-muted ls-1 mb-1">Products List</h6>
                     <h5 class="h3 mb-0">Linggom Coffee Products</h5>
+                      <br>
+                      @if(session('status'))
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                          <span class="alert-text"><strong>Success!</strong> {{session('status')}}</span>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                    @endif
+
                   </div>
                 </div>
               </div>
@@ -91,28 +107,23 @@
                       <td>
                         {{$product->stock}}
                       </td>
-                      <td>
-                      <div class="btn-group-horizontal">
-                        <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen-square" aria-hidden="true"></i>&nbsp;Edit</a>
-                        <a class="btn btn-danger btn-lg" href="{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Hapus</a>
-                        <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-info-circle"></i>&nbsp;Detail</a>
-                      </div>
-                      {{-- <a href="/admin/detail_produk?product_id={{$product->id}}">
-                        <button class="btn btn-success btn-sm small d-inline">Edit</button>
-                      </a>
-                      <form action="{{__('/admin/hapus_produk')}}" method="post">
-                        @csrf
-                        <input type="text" name="produk_id" value="{{$product->id}}" hidden>
-                        <button type="submit" class="btn btn-danger btn-sm d-inline">Hapus</button>
-                      </form>
-                      <a href="/admin/detail_produk?product_id={{$product->id}}">
-                        <button class="btn btn-warning btn-sm small d-inline"> Selengkapnya</button>
-                      </a> --}}
-                      {{-- <div class="btn-group-vertical">
-                        <a class="btn btn-warning btn-sm" href="/admin/detail_produk?product_id={{$product->id}}">Edit</a>
-                        <a class="btn btn-danger btn-sm" href="barang/{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')">Hapus</a>
-                    </div> --}}
-                    </td>
+                      <td colspan="3">
+                        <div class="row justify-content-center">
+                          <div class="col-md-4">
+                            <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen-square" aria-hidden="true"></i>&nbsp;Edit</a>
+                          </div>
+                          <div class="col-md-4">
+                            <form action="{{__('/admin/hapus_produk')}}" method="post">
+                              @csrf
+                              <input type="text" name="produk_id" value="{{$product->id}}" hidden>
+                              <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Yakin ingin menghapus data pengguna? Seluruh data pemesanan dan data lain terkait pengguna ini akan ikut terhapus.')"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                            </form>
+                          </div>
+                          <div class="col-md-4">
+                            <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-info-circle"></i>&nbsp;Detail</a>
+                          </div>
+                        </div>
+                      </td>
                   
                     </tr>
                     @endforeach

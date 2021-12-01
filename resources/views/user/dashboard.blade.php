@@ -1,8 +1,26 @@
+<?php
+	//untuk menampilkan jumlah barang di cart user
+  	use App\Models\Cart;
+  	$counter = Cart::where('customerId', Auth::user()->id)->count();
+?>
+
 @extends('user.headerfooter')
 
 @section('title')
-	<title>{{config('app_name','Linggom Coffee')}} - Home </title>
+	<title>{{config('app_name','Linggom Coffee')}} - Dashboard</title>
 @endsection('title')
+
+@section('navbar')
+	<li class="nav-item active"><a href="{{__('/user/dashboard')}}" class="nav-link">Home</a></li>
+	<li class="nav-item"><a href="/user/dashboard#about" class="nav-link">Tentang</a></li>
+	<li class="nav-item"><a href="{{__('/user/showprofile')}}" class="nav-link">Profile</a></li>
+	<li class="nav-item"><a href="{{__('/user/product')}}" class="nav-link">Produk</a></li>
+	
+	<!-- cart -->
+	<li class="nav-item cart"><a href="{{route('cart')}}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>{{$counter}}</small></span></a></li>
+	</li>
+
+@endsection('navbar')
 
 @section('content')
 
@@ -16,8 +34,8 @@
 					<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 						<div class="col-md-8 col-sm-12 text-center ftco-animate">
 							<span class="subheading">Welcome</span>
-							<h1 class="mb-4">The Best Coffee Testing Experience</h1>
-							<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+							<h1 class="mb-4">Aroma &amp; Rasa Kopi yang Khas</h1>
+							<p class="mb-4 mb-md-5">Kopi Sidikalang terkenal akan aroma dan rasanya yang membuat kecanduan. Tentunya seluruh produk di Linggom Coffee menggunakan kopi asli Sidikalang!</p>
 							<p>
 								<a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
 							</p>
@@ -33,8 +51,8 @@
 					<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 						<div class="col-md-8 col-sm-12 text-center ftco-animate">
 							<span class="subheading">Welcome</span>
-							<h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-							<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+							<h1 class="mb-4">Proses Pengolahan yang Alami dan Tradisional!</h1>
+							<p class="mb-4 mb-md-5">Mulai dari penjemuran, penggilingan, penggongsengan, dan pengemasan dilakukan secara alami dan melibatkan stakeholder dari hulu ke hilir.</p>
 							<p>
 								<a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
 							</p>
@@ -51,8 +69,8 @@
 					<div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 						<div class="col-md-8 col-sm-12 text-center ftco-animate">
 							<span class="subheading">Welcome</span>
-							<h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-							<p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+							<h1 class="mb-4">Dairi Pride, Sidikalang Coffee</h1>
+							<p class="mb-4 mb-md-5">Produk kopi pilihan terbaik, hanya dari Kota Kopi.</p>
 							<p> 
 								<a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
 							</p>
@@ -138,15 +156,26 @@
 	<!-- PRODUCT UTAMA -->
 	<section class="ftco-section">
 		<div class="container">
+
 			<div class="row justify-content-center mb-5 pb-3">
 				<div class="col-md-7 heading-section ftco-animate text-center">
 					<span class="subheading">Linggom Coffee</span> <br>
 					<h2 class="mb-4">Daftar Produk</h2>
 					<p>Kopi Produk Lico dipetik dan diolah oleh petani di single Origin Sidikalang, Kabupaten Dairi, dan kota di sekitarnya. 
-						<a href="{{__('/products')}}"></a>
+						<a href="{{__('/user/products')}}"></a>
 					</p>
 				</div>
 			</div>
+
+			@if(session('status'))
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<strong> {{ session('status') }}</strong>
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			@endif
+
 			<div class="row justify-content-center">
 				@foreach($products as $product)
 				<div class="col-md-3">
@@ -157,8 +186,14 @@
 							<p>{{$product->description}}</p>
 							<p class="price"><span>@currency($product->harga)</span></p>
 							<p>
-								<!-- Cek apakah produk tersebut sudah ada di ada di database cart atas nama pengguna yg sedang login -->					
-								<button type="submit" name="add" class="btn btn-outline-primary btn-primary">Add to Cart</button>	
+								<form action="{{__('/user/addToCart')}}" method="POST">
+									@csrf
+									<input type="text" value="{{$product->id}}" name="productId" hidden>
+									<input type="text" value="{{Auth::user()->id}}" name="customerId" hidden>
+									<input type="text" value="{{Auth::user()->id}}" name="customerId" hidden>
+									<input type="text" value="{{$product->harga}}" name="price" hidden>
+									<button type="submit" class="btn btn-primary btn-outline-primary">Add to cart</button>
+								</form>
 							</p>
 						</div>
 					</div>
@@ -166,89 +201,96 @@
 				@endforeach
 				<a href="{{__('/user/product')}}" style="text-decoration:underline">Lihat semua produk</a>
 			</div>
+
 		</div>
 	</section>
 
 	<!-- TESTIMONIAL PEMBELI -->
 	<section class="ftco-section img" id="ftco-testimony" style="background-image: url({{asset('images/bg_1.jpg')}});"  data-stellar-background-ratio="0.5">
-			<div class="overlay"></div>
+		<div class="overlay"></div>
 		<div class="container">
 			<div class="row justify-content-center mb-5">
-			<div class="col-md-7 heading-section text-center ftco-animate">
-				<span class="subheading">Testimony</span>
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Testimony</span>
 					<br>
-				<h2 class="mb-4">Dari mereka yang sudah membeli</h2>
-				<p>Testimonial diberikan oleh pelanggan dari berbagai daerah</p>
-			</div>
+					<h2 class="mb-4">Dari mereka yang sudah membeli</h2>
+					<p>Testimonial diberikan oleh pelanggan dari berbagai daerah</p>
+				</div>
 			</div>
 		</div>
+
 		<div class="container-wrap">
 			<div class="row d-flex no-gutters">
-			<div class="col-lg align-self-sm-end ftco-animate">
-				<div class="testimony">
-					<blockquote>
-					<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
-					</blockquote>
-					<div class="author d-flex mt-4">
-					<div class="image mr-3 align-self-center">
-						<img src="images/person_1.jpg" alt="">
-					</div>
-					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg align-self-sm-end">
-				<div class="testimony overlay">
-					<blockquote>
-					<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-					</blockquote>
-					<div class="author d-flex mt-4">
-					<div class="image mr-3 align-self-center">
-						<img src="images/person_2.jpg" alt="">
-					</div>
-					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+
+				<div class="col-lg align-self-sm-end ftco-animate">
+					<div class="testimony">
+						<blockquote>
+						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
+						</blockquote>
+						<div class="author d-flex mt-4">
+							<div class="image mr-3 align-self-center">
+								<img src="images/person_1.jpg" alt="">
+							</div>
+							<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg align-self-sm-end ftco-animate">
-				<div class="testimony">
-					<blockquote>
-					<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
-					</blockquote>
-					<div class="author d-flex mt-4">
-					<div class="image mr-3 align-self-center">
-						<img src="images/person_3.jpg" alt="">
-					</div>
-					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg align-self-sm-end">
-				<div class="testimony overlay">
-					<blockquote>
-					<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however.&rdquo;</p>
-					</blockquote>
-					<div class="author d-flex mt-4">
-					<div class="image mr-3 align-self-center">
-						<img src="images/person_2.jpg" alt="">
-					</div>
-					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+
+				<div class="col-lg align-self-sm-end">
+					<div class="testimony overlay">
+						<blockquote>
+						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
+						</blockquote>
+						<div class="author d-flex mt-4">
+							<div class="image mr-3 align-self-center">
+								<img src="images/person_2.jpg" alt="">
+							</div>
+							<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-lg align-self-sm-end ftco-animate">
-				<div class="testimony">
-				<blockquote>
-					<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
-				</blockquote>
-				<div class="author d-flex mt-4">
-					<div class="image mr-3 align-self-center">
-					<img src="images/person_3.jpg" alt="">
+
+				<div class="col-lg align-self-sm-end ftco-animate">
+					<div class="testimony">
+						<blockquote>
+						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
+						</blockquote>
+						<div class="author d-flex mt-4">
+							<div class="image mr-3 align-self-center">
+								<img src="images/person_3.jpg" alt="">
+							</div>
+							<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						</div>
 					</div>
-					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
 				</div>
+
+				<div class="col-lg align-self-sm-end">
+					<div class="testimony overlay">
+						<blockquote>
+						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however.&rdquo;</p>
+						</blockquote>
+						<div class="author d-flex mt-4">
+							<div class="image mr-3 align-self-center">
+								<img src="images/person_2.jpg" alt="">
+							</div>
+							<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						</div>
+					</div>
 				</div>
-			</div>
+
+				<div class="col-lg align-self-sm-end ftco-animate">
+					<div class="testimony">
+						<blockquote>
+							<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
+						</blockquote>
+						<div class="author d-flex mt-4">
+							<div class="image mr-3 align-self-center">
+								<img src="images/person_3.jpg" alt="">
+							</div>
+							<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

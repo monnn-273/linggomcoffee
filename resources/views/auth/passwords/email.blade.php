@@ -13,13 +13,13 @@
 
 </head>
 
-<body style="background-image: url({{asset('images/bg_2.jpg')}});">
+<body style="background-image: url({{asset('images/bg_4.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-6 col-lg-6">
 					<div class="login-wrap py-5">
-		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/lico-black-5.png);"></div>
+		      			<div class="img d-flex align-items-center justify-content-center" style="background-image: url({{asset('images/lico-black-5.png')}});"></div>
 		      			<h3 class="text-center mb-0">H O R A S !</h3>
 		      			<p class="text-center">Link untuk reset password Anda akan dikirim ke alamat email yang Anda gunakan saat mendaftar.</p>
 

@@ -13,7 +13,7 @@
 
 </head>
 
-<body style="background-image: url({{asset('images/bg_1.jpg')}});">
+<body style="background-image: url({{asset('images/bg_4.jpg')}});">
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row justify-content-center">

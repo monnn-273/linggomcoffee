@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\Bill;
+use App\Models\CartDetail;
 
 class User extends Authenticatable
 {
@@ -48,5 +50,13 @@ class User extends Authenticatable
 
     public function cart(){
         return $this->hasMany(Cart::class);
+    }
+
+    public function bills(){
+        return $this->hasMany(Bill::class);
+    }
+
+    public function cartDetail(){
+        return $this->hasMany(CartDetail::class);
     }
 }

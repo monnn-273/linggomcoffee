@@ -24,8 +24,8 @@
             <h1 class="mb-4">The Best Coffee Testing Experience</h1>
             <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
             <p>
-              <a href="{{route('register')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
-              <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
+              <a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+					    <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
             </p>
           </div>
 
@@ -43,8 +43,8 @@
               <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
               <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
               <p>
-                <a href="{{route('register')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
-                <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
+                <a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+                <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
               </p>
             </div>
           </div>
@@ -62,8 +62,8 @@
             <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
             <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
             <p>
-              <a href="{{route('register')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
-              <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
+              <a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+              <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
             </p>
           </div>
 
@@ -91,8 +91,12 @@
                 <img src="images/person_4.jpg" alt="Image placeholder" class="img-fluid mb-4">
               </div>
               <div class="desc align-self-md-center">
-                <h3>Lance Smith</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                <h3>Alex Simare-mare</h3>
+                <p>
+                  Pemuda asal Sidikalang sebagai pemilik usaha Linggom Coffee. Linggom Coffee dibangun dengan banyak harapan. Salah satunya adalah mengembalikan
+                  ketenaran Kopi Sidikalang. Kopi Sidikalang banyak diakui orang sebagai kopi yang enak dan aroma yang membuat candu. Oleh karena itu, produk Linggom Coffee dibuat, representasi dari kopi asli Sidikalang yang diolah secara natural.
+                  Banyak petani yang terlibat dalam proses pembuatan, oleh karena itu, dengan semakin berkembangnya produk Linggom Coffee ini, maka petani kopi Sidikalang juga dapat semakin sejahtera. 
+                </p>
               </div>
             </div>
 
@@ -122,7 +126,7 @@
 
           </div>
         </div>
-      </section> <!-- .section -->
+  </section> <!-- .section -->
 
 @endsection('content')
 

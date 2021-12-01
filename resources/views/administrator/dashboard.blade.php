@@ -13,25 +13,31 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/myprofile')}}">
-      <i class="ni ni-single-02 text-yellow"></i>
-      <span class="nav-link-text">Profile</span>
+      <i class="ni ni-single-02 text-primary"></i>
+      <span class="nav-link-text">Profile Saya</span>
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="{{__('/admin/users')}}">
+      <i class="fa fa-user-friends text-primary"></i>
+      <span class="nav-link-text">Pengguna</span>
+    </a>
+
+  <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/produk')}}">
-      <i class="ni  ni-bag-17 text-default"></i>
-      <span class="nav-link-text">Products</span>
+      <i class="ni  ni-bag-17 text-primary"></i>
+      <span class="nav-link-text">Produk</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/order_list')}}">
-      <i class="ni ni-bullet-list-67 text-default"></i>
+      <i class="ni ni-bullet-list-67 text-primary"></i>
       <span class="nav-link-text">Daftar Pesanan</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/history')}}">
-      <i class="fa fa-history" aria-hidden="true"></i>
+      <i class="fa fa-history text-primary" aria-hidden="true"></i>
       <span class="nav-link-text">Riwayat Penjualan</span>
     </a>
   </li>
@@ -44,6 +50,7 @@
 @section('content')
     <!-- Page content -->
     <div class="container-fluid mt--6">
+
       <!-- product list -->
       <div class="row"> 
         <div class="col-xl-12">
@@ -53,6 +60,17 @@
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Products List</h6>
                   <h5 class="h3 mb-0">Linggom Coffee Products</h5>
+                  <br><br>
+                    @if(session('status'))
+                      <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                          <span class="alert-text"><strong>Success!</strong> {{session('status')}}</span>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                    @endif
+                    <br><br>
                 </div>
               </div>
             </div>
@@ -89,27 +107,22 @@
                     <td>
                       {{$product->stock}}
                     </td>
-                    <td>
-                      <div class="btn-group-horizontal">
-                        <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen-square" aria-hidden="true"></i>&nbsp;Edit</a>
-                        <a class="btn btn-danger btn-lg" href="{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Hapus</a>
-                        <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-info-circle"></i>&nbsp;Detail</a>
+                    <td colspan="3">
+                      <div class="row justify-content-center">
+                        <div class="col-md-4">
+                          <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen-square" aria-hidden="true"></i>&nbsp;Edit</a>
+                        </div>
+                        <div class="col-md-4">
+                          <form action="{{__('/admin/hapus_produk')}}" method="post">
+                            @csrf
+                            <input type="text" name="produk_id" value="{{$product->id}}" hidden>
+                            <button type="submit" class="btn btn-danger btn-lg d-inline" onclick="return confirm('Yakin ingin menghapus produk ini? Anda tidak akan dapat mengembalikan data produk setelah dihapus.')"><i class="fa fa-trash"></i>Hapus</button>
+                          </form>
+                        </div>
+                        <div class="col-md-4">
+                          <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-info-circle"></i>&nbsp;Detail</a>
+                        </div>
                       </div>
-                      {{-- <a href="/admin/detail_produk?product_id={{$product->id}}">
-                        <button class="btn btn-success btn-sm small d-inline">Edit</button>
-                      </a>
-                      <form action="{{__('/admin/hapus_produk')}}" method="post">
-                        @csrf
-                        <input type="text" name="produk_id" value="{{$product->id}}" hidden>
-                        <button type="submit" class="btn btn-danger btn-sm d-inline">Hapus</button>
-                      </form>
-                      <a href="/admin/detail_produk?product_id={{$product->id}}">
-                        <button class="btn btn-warning btn-sm small d-inline"> Selengkapnya</button>
-                      </a> --}}
-                      {{-- <div class="btn-group-vertical">
-                        <a class="btn btn-warning btn-sm" href="/admin/detail_produk?product_id={{$product->id}}">Edit</a>
-                        <a class="btn btn-danger btn-sm" href="barang/{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')">Hapus</a>
-                    </div> --}}
                     </td>
                   </tr>
                   @endforeach
@@ -124,103 +137,59 @@
       </div>
       <!-- akhir product list -->
 
+      
       <div class="row">
-
         <!-- list orderan -->
         <div class="col-xl-8">
           <div class="card">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Order List</h3>
+                  <h3 class="mb-0">Daftar Pesanan</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  <a href="{{__('/admin/order_list')}}" class="btn btn-sm btn-primary">Semua Pesanan</a>
                 </div>
               </div>
             </div>
             <div class="table-responsive">
-              <!-- Projects table -->
+              <!-- tabel pesanan -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
+                    <th scope="col">Nama Pemesan</th>
+                    <th scope="col">Produk</th>
+                    <th scope="col">Status Pembayaran</th>
+                    <th scope="col">Status Pengiriman</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @if($bills->count() == 0)
                   <tr>
-                    <th scope="row">
-                      /argon/
-                    </th>
-                    <td>
-                      4,569
-                    </td>
-                    <td>
-                      340
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
+                    <th scope="row"><h5> Saat ini Anda belum menerima pesanan apapun.</h5></th>
+                  </tr>
                     </td>
                   </tr>
+                  @endif
+                  @foreach($bills as $bill)
                   <tr>
-                    <th scope="row">
-                      /argon/index.html
-                    </th>
+                    <th scope="row">{{$bill->customer->name}}</th>
                     <td>
-                      3,985
+                      @foreach($cartDetails as $cartDetail)
+                        @if($cartDetail->bill_id == $bill->id)
+                          {{$cartDetail->products->nama_produk}} x <strong> {{$cartDetail->quantity}} </strong>
+                          <br>
+                        @endif
+                      @endforeach
                     </td>
                     <td>
-                      319
+                      {{$bill->payment_status}}
                     </td>
                     <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
+                      {{$bill->shipping_status}}
                     </td>
                   </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/charts.html
-                    </th>
-                    <td>
-                      3,513
-                    </td>
-                    <td>
-                      294
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/tables.html
-                    </th>
-                    <td>
-                      2,050
-                    </td>
-                    <td>
-                      147
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      /argon/profile.html
-                    </th>
-                    <td>
-                      1,795
-                    </td>
-                    <td>
-                      190
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                    </td>
-                  </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -228,7 +197,7 @@
         </div>
         <!-- akhir list orderan -->
 
-        <!-- history penjualan  -->
+        <!-- history penjualan -->
         <div class="col-xl-4">
           <div class="card">
             <div class="card-header border-0">
@@ -237,7 +206,7 @@
                   <h3 class="mb-0">Riwayat Penjualan</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">See all</a>
+                  <a href="{{__('/admin/history')}}" class="btn btn-sm btn-primary">Riwayat Penjualan</a>
                 </div>
               </div>
             </div>
@@ -246,101 +215,26 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col"></th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Total Pembelian</th>
                   </tr>
                 </thead>
                 <tbody>
+                  @if($bills2->count() == 0)
                   <tr>
-                    <th scope="row">
-                      Facebook
-                    </th>
                     <td>
-                      1,480
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">60%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                          </div>
-                        </div>
-                      </div>
+                      <h5>Saat ini Anda belum memiliki riwayat penjualan melalui website ini.</h5>
                     </td>
                   </tr>
+                  @endif
+                  @foreach($bills2 as $bill)
                   <tr>
-                    <th scope="row">
-                      Facebook
-                    </th>
-                    <td>
-                      5,480
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">70%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-success" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
+                    <th scope="row">{{$bill->bill_name}}</th>
+                    <td>@currency($bill->payment)</td>
                   </tr>
+                  @endforeach
                   <tr>
-                    <th scope="row">
-                      Google
-                    </th>
-                    <td>
-                      4,807
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">80%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      Instagram
-                    </th>
-                    <td>
-                      3,678
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">75%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-info" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      twitter
-                    </th>
-                    <td>
-                      2,645
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <span class="mr-2">30%</span>
-                        <div>
-                          <div class="progress">
-                            <div class="progress-bar bg-gradient-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%;"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
+                    <td colspan="2"><strong><h4>Total Penjualan : @currency($sold)</h4></strong></td>
                   </tr>
                 </tbody>
               </table>
@@ -348,7 +242,6 @@
           </div>
         </div>
         <!-- akhir history penjualan -->
-
       </div>
     </div>
 @endsection('content')

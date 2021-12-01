@@ -1,7 +1,7 @@
 @extends('administrator.headerfooter')
 
 @section('title')
-<title>{{config('app_name','Linggom Coffee')}} - Profile </title>
+  <title>{{config('app_name','Linggom Coffee')}} - Profile </title>
 @endsection('title')
 
 
@@ -14,25 +14,30 @@
   </li>
   <li class="nav-item">
     <a class="nav-link active" href="{{__('/admin/myprofile')}}">
-      <i class="ni ni-single-02 text-yellow"></i>
-      <span class="nav-link-text">Profile</span>
+      <i class="ni ni-single-02 text-primary"></i>
+      <span class="nav-link-text">Profile Saya</span>
     </a>
   </li>
   <li class="nav-item">
+    <a class="nav-link" href="{{__('/admin/users')}}">
+      <i class="fa fa-user-friends text-primary"></i>
+      <span class="nav-link-text">Pengguna</span>
+    </a>
+  <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/produk')}}">
-      <i class="ni  ni-bag-17 text-default"></i>
-      <span class="nav-link-text">Products</span>
+      <i class="ni  ni-bag-17 text-primary"></i>
+      <span class="nav-link-text">Produk</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/order_list')}}">
-      <i class="ni ni-bullet-list-67 text-default"></i>
+      <i class="ni ni-bullet-list-67 text-primary"></i>
       <span class="nav-link-text">Daftar Pesanan</span>
     </a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{{__('/admin/history')}}">
-      <i class="fa fa-history" aria-hidden="true"></i>
+      <i class="fa fa-history text-primary" aria-hidden="true"></i>
       <span class="nav-link-text">Riwayat Penjualan</span>
     </a>
   </li>
@@ -83,7 +88,7 @@
                   <i class="ni business_briefcase-24 mr-2"></i>Administrator - Linggom Coffee
                 </div>
                 <div>
-                  <i class="ni education_hat mr-2"></i>University of Pennsylvania
+                  <i class="ni education_hat mr-2"></i>Pemilik Usaha Linggom Coffee
                 </div>
               </div>
             </div>
@@ -153,10 +158,16 @@
                 </div>
               </form>
 
+              <br><br><br>
               <!-- AKHIR FORM UPDATE DATA -->
             </div>
           </div>
         </div>
       </div>
       <br><br><br><br><br>
+
+      <!-- required scripts -->
+      @include('sweetalert::alert')
+
+      
 @endsection('content')

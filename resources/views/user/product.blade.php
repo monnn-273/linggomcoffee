@@ -1,10 +1,25 @@
+<?php
+    //untuk menghitung data dalam cart 
+    use App\Models\Cart;
+    $counter = Cart::where('customerId', Auth::user()->id)->count();
+?>
+
+
 @extends('user.headerfooter')
 @section('title')
-    <title>{{config('app_name','Linggom Coffee')}} - Cart </title>
+    <title>{{config('app_name','Linggom Coffee')}} - Product </title>
 @endsection('title')
 
-@section('content')
+@section('navbar')
+	<li class="nav-item"><a href="{{__('/user/dashboard')}}" class="nav-link">Home</a></li>
+	<li class="nav-item"><a href="/user/dashboard#about" class="nav-link">Tentang</a></li>
+	<li class="nav-item"><a href="{{__('/user/showprofile')}}" class="nav-link">Profile</a></li>
+	<li class="nav-item active"><a href="{{__('/user/product')}}" class="nav-link">Produk</a></li>
+	<!-- cart -->
+    <li class="nav-item cart"><a href="{{route('cart')}}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>{{$counter}}</small></span></a></li>
+@endsection('navbar')
 
+@section('content')
 
     <!-- HERO SECTION -->
     <section class="home-slider owl-carousel">
@@ -64,7 +79,6 @@
     </section>
     <!-- AKHIR HERO SECTION-->
 
-
     <section class="ftco-menu mb-5 pb-5">
     	<div class="container">
 
@@ -78,7 +92,16 @@
                 </div>
             </div>
 
-            <!-- MENU -->
+            @if(session('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('status') }} </strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
+            <!-- DAFTAR PRODUK -->
     		<div class="row d-md-flex">
 	    		<div class="col-lg-12 ftco-animate p-md-5">
 		    		<div class="row">
@@ -99,6 +122,7 @@
                                                             <form action="{{__('/user/addToCart')}}" method="POST">
                                                                 @csrf
                                                                 <input type="text" value="{{$product->id}}" name="productId" hidden>
+                                                                <input type="text" value="{{Auth::user()->id}}" name="customerId" hidden>
                                                                 <input type="text" value="{{Auth::user()->id}}" name="customerId" hidden>
                                                                 <input type="text" value="{{$product->harga}}" name="price" hidden>
                                                                 <button type="submit" class="btn btn-primary btn-outline-primary">Add to cart</button>

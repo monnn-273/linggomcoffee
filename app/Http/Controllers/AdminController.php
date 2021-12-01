@@ -5,18 +5,38 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\CartDetail;
+use App\Models\Cart;
+use App\Models\Bill;
+use App\Models\Expedition;
+
 
 class AdminController extends Controller
 {
-    public function __construct() {
+    public function __construct() 
+    {
         $this->middleware('auth');
     }
-    public function index() {
+    public function index() 
+    {
+        $cartDetails = CartDetail::all();
+        // Daftar Pesanan adalah pesanan yang pembayarannya belum diverifikasi ataupun produknya belum dikirimkan
+        $bills = Bill::where('payment_status','not verified')->orWhere('shipping_status', 'belum dikirim')->get();
+
+        //Data yang ada pada history penjualan adalah produk yang pembayarannya sudah diverifikasi dan produk sudah dikirimkan 
+        $bills2 = Bill::where([
+            'payment_status'=>'verified'
+        ])->get();
         $products = Product::paginate(3);
-        return view('administrator.dashboard', compact('products'));
+        $sold = Bill::where('payment_status', 'verified')->sum('payment');
+        $user = User::where('role', 'user')->count();
+        return view('administrator.dashboard', compact('products','bills','bills2','cartDetails','sold','user'));
     }
-    public function order_list() {
-        return view('administrator.order_list');
+    public function order_list() 
+    {
+        $bills = Bill::where('payment_status','not verified')->orWhere('shipping_status', 'belum dikirim')->get();
+        $cartDetails = CartDetail::all(); 
+        return view('administrator.order_list',compact('bills','cartDetails'));
     }
     
     public function product() {
@@ -29,7 +49,11 @@ class AdminController extends Controller
     }
 
     public function history() {
-        return view('administrator.history');
+        // data penjualan yang ditampilkan adalah data penjualan yang pembarayannya sudah terverifikasi 
+        //dan produk sudah dalam pengiriman (to be considered)
+        $cartDetails = CartDetail::all(); 
+        $bills = Bill::where('payment_status','verified')->get();
+        return view('administrator.history', compact('bills','cartDetails'));
     }
 
     public function single_product(Request $request){
@@ -39,75 +63,55 @@ class AdminController extends Controller
        return view('administrator.single-product', compact('product'));
     }
 
-      //fungsi delete produk
-    // public function destroy(Request $request)
-    // {
-    //     $produk_id = $request->produk_id;
-    //     $destroy_product = Product::findOrFail($produk_id);
-    //     $destroy_product->delete();
-    //     return redirect('/admin/produk')->with('delete_status', 'Data produk telah dihapus!');
-    // }
-    public function delete($id) {
-        // Memilih data dari database berdasarkan id dan menghapusnya dengan fungsi delete()
-        // lalu kembali ke halaman data produk
-        $product = Product::find($id);
+    //  fungsi delete produk
+    public function delete(Request $request) 
+    {
+        Cart::where('productId',$request->produk_id)->delete();
+        CartDetail::where('productId',$request->produk_id)->delete();
+        $product = Product::find($request->produk_id);
         unlink("images/".$product->gambar);
         $product->delete();
-
-        return redirect('/admin/produk')->with('delete_status', ' Data produk telah dihapus!');
+        return redirect('/admin/produk')->withSuccess('Data produk berhasil dihapus!');
     }
 
-     
-    public function update(Request $request, $id)
+    // update data produk
+    public function update(Request $request)
     {
-        $product = Product::find($id);  
+
+        $product = Product::find($request->id);  
  
         //memeriksa validasi inputan
-        // $this->validate($request, [
-        //     'nama_produk' => 'required|string|min:3',
-        //     'harga' => 'required',
-        //     'stock' => 'required',
-        //     'deskripsi'=>'required',
-        // ]);
+        $this->validate($request, [
+            'nama_produk' => 'required|string|min:3',
+            'harga' => 'required',
+            'stock' => 'required',
+            'deskripsi'=>'required',
+        ]);
  
-        // Product::where('id', $request->produk_id)->update([
-        //     'nama_produk' => htmlspecialchars($request->nama_produk),
-        //     'harga' => htmlspecialchars($request->harga),
-        //     'stock' =>htmlspecialchars($request->stock),
-        //     'deskripsi' =>htmlspecialchars($request->deskripsi),
-        // ]);
-        
-        // $this->validate($request, [
-        //     'nama_produk' => 'required | min:6',
-        //     'gambar' => 'image|mimes:jpg,png,jpeg|max:2048',
-        //     'harga' => 'required | numeric',
-        //     'masa_preorder' => 'required | numeric',
-        //     'kondisi_produk' => 'required',
-        //     'berat' => 'required | numeric',
-        //     'stock' => 'required | numeric',
-        //     'deskripsi' => 'required | max:500',
-        // ]);
-        $product->update($request->all());
+        Product::where('id', $request->produk_id)->update([
+            'nama_produk' => htmlspecialchars($request->nama_produk),
+            'harga' => htmlspecialchars($request->harga),
+            'stock' =>htmlspecialchars($request->stock),
+            'deskripsi' =>htmlspecialchars($request->deskripsi),
+            'masa_preorder' =>htmlspecialchars($request->masa_preorder),
+            'kondisi_produk' =>htmlspecialchars($request->kondisi_produk),
+            'berat' =>htmlspecialchars($request->berat),
+        ]);
+ 
+        //memeriksa apakah ada inputan file gambar
+        if($request->hasFile('gambar'))
+        {
+            // validasi gambar
+            $this->validate($request, [
+                'gambar' => 'image|mimes:jpg,png,jpeg|max:2048',
+            ]);
 
-        //memeriksa apakah inputan file gambar
-        if($request->hasFile('gambar')){
-            // Mengambil gambar dan menyimpannya di folder tujuan dengan nama asli
+            //mengambil gambar dan menyimpannya di folder tujuan dengan nama asli
             $request->file('gambar')->move('images/products/', $request->file('gambar')->getClientOriginalName());
             $product->gambar = $request->file('gambar')->getClientOriginalName();
             $product->save();
         }
-        // if($request->hasFile('gambar')){
-            //validasi format file gambar
-            // $this->validate($request, [
-            //     'gambar' => 'image|mimes:jpg,png,jpeg|max:2048',
-            // ]);
- 
-            // $location = public_path('images');
-            // $request-> file('gambar')->move($location, $request->file('gambar')->getClientOriginalName());
-            // $product->gambar = $request->file('gambar')->getClientOriginalName();
-            // $product->save();
-        // }
-  
+
         return redirect('/admin/produk')->withSuccess('Perubahan berhasil disimpan!');
     }
 
@@ -147,59 +151,96 @@ class AdminController extends Controller
     }
 
 
-    public function add_administrator_page()
+    //fungsi update profile admin
+    public function update_profile(Request $request)
     {
-        return view('administrator.add_administrator');
-    }
-
-
-    //fungsi untuk menyimpan data pengguna baru
-    public function store_admin(Request $request){
-
-        //memeriksa valdasi inputan file gambar, nama, dan email
-        $this->validate($request, [
-            'name'  => 'required|alpha|string|max:30|min:3',
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|password|min:8|max:255',
-        ]);
-
-
-        $user = new User;
-        $user->name= htmlspecialchars($request->name);
-        $user->role = $request->role;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password); 
-        $user->save();
-
-        return redirect('/admin/dashboard')->withSuccess("Admin baru sudah ditambahkan!");
-    }
-
-     //fungsi update profile admin
-     public function update_profile(Request $request)
-     {
-         $user = User::find($request->user_id);
+        $user = User::find($request->user_id);
 
         // ddd($user);
  
-         //memeriksa validasi inputan
-         $this->validate($request, [
+        //memeriksa validasi inputan
+        $this->validate($request, [
              'name' => 'required|string|max:30|min:3',
              'email' => 'required|string|email|max:255',
              'address'=> 'string|min:10|max:100',
              'no_telp'=> 'string|min:10|max:100',
-         ]);
+        ]);
  
-         User::where('id', $request->user_id)->update([
+        User::where('id', $request->user_id)->update([
              'name' => htmlspecialchars($request->name),
              'email' => htmlspecialchars($request->email),
              'address' =>htmlspecialchars($request->address),
              'no_telp' => htmlspecialchars($request->no_telp),
              'role'=> "admin",
-         ]);
+        ]);
   
-         return redirect('/admin/myprofile')->with('status', 'Your profile has been updated!');
-     }
- 
+        return redirect('/admin/myprofile')->withSuccess('Profile Anda sudah diperbaharui!');
+    }
+
+    public function editBills(Request $request)
+    {
+        $bill = Bill::where('id', $request->bill_id)->get();
+        $cartDetails = CartDetail::where('bill_id', $request->bill_id)->get();
+
+        return view('administrator.edit_bills',compact('bill','cartDetails'));
+    }
+
+    public function updateBills(Request $request)
+    {
+        Bill::where('id', $request->bill_id)->update([
+            'shipping_status' => htmlspecialchars($request->shipping_status),
+            'payment_status' => htmlspecialchars($request->payment_status),
+        ]);
+
+        return redirect('/admin/order_list')->withSuccess('Data pesanan pelanggan berhasil diubah! Pantau terus daftar pesanan Anda agar tidak ada pesanan yang terlewatkan!');
+    }
+
+    public function deleteBills(Request $request)
+    {
+        CartDetail::where('bill_id', $request->bill_id)->delete();
+        Expedition::where('bill_id', $request->bill_id)->delete();
+        Bill::where('id', $request->bill_id)->delete();
+
+        return redirect('/admin/order_list')->withSuccess('Data pesanan pelanggan berhasil dihapus!');
+    }
+
+    public function billDetail(Request $request)
+    {
+        $bill = Bill::where('id', $request->bill_id)->get();
+        $cartDetails = CartDetail::where('bill_id', $request->bill_id)->get();
+        return view('administrator.bill_detail', compact('bill','cartDetails'));
+    }
+
+    public function users()
+    {
+        $users = User::orderBy('role')->get();
+        return view('administrator.users',compact('users'));
+    }
+
+    public function update_user(Request $request)
+    {
+        User::where('id',$request->user_id)->update([
+            "role" => "admin",
+        ]);
+
+        return redirect('/admin/users')->withSuccess('Data Pengguna berhasil diubah! Website memiliki Administrator baru.');
+    }
+
+    public function delete_user(Request $request)
+    {
+        Cart::where('customerId',$request->user_id)->delete();
+        $bill = Bill::where('customerId',$request->user_id)->select('id')->get();
+        if($bill->count ()> 0)
+        {
+            Expedition::where('bill_id',$bill)->delete();
+        }
+        CartDetail::where('customerId',$request->user_id)->delete();
+        Bill::where('customerId',$request->user_id)->delete();
+        User::where('id', $request->user_id)->delete();
+
+        return redirect('/admin/users')->withSuccess('Data Pengguna berhasil Dihapus!');
+    }
+
 
     
 }
