@@ -82,6 +82,7 @@
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->role}}</td>
                                     <td>
+                                      @if($user->role != "admin")
                                         <div class="row justify-content-center">
                                             <div class="col-md-12">
                                                 <form action="{{__('/admin/update_user')}}" method="POST">
@@ -99,6 +100,9 @@
                                                 </form>
                                             </div>
                                         </div>
+                                        @else
+                                        Akun ini merupakan akun administrator
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach

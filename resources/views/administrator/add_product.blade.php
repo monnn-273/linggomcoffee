@@ -155,4 +155,7 @@
     </div>
   </div>
 
+  <!-- required scripts -->
+  @include('sweetalert::alert')
+
 @endsection('content')

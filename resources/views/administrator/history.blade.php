@@ -69,8 +69,8 @@
                         <th scope="col" class="sort" data-sort="name">Riwayat Penjualan</th>
                         <th scope="col" class="sort" data-sort="budget">Daftar Pesanan</th>
                         <th scope="col" class="sort" data-sort="status">Total Pembayaran</th>
-                        <th scope="col">Status Pembayaran</th>
-                        <th scope="col" class="sort" data-sort="completion">Status Pengiriman</th>
+                        <th scope="col">Status Pengiriman</th>
+                        <th scope="col" class="sort" data-sort="completion">Status Pembayaran</th>
                     </tr>
                     </thead>
                     <tbody class="list">

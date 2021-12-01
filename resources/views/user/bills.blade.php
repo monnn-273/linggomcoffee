@@ -157,7 +157,8 @@
                                         <p>Direct Bank Tranfer</p>
 
                                         <p>Harap lakukan pembayaran ke no.rekening berikut: </p>
-                                        <h3>Bank BRI : 1212121212 a.n Alex Simare-mare</h3>
+                                        <h3>Bank BRI : 019401073145501 a.n Alexander Sari Sudiono</h3>
+                                        <h3>Bank BCA : 0222332361 a.n Alexander Sari Sudiono</h3>
 
                                         <p>Bukti pembayaran harus dikirimkan melalui kontak Whatsapp Business : +62 853-6288-8055 <br> Kepentingan untuk membayar menggunakan rekening bank yang lain juga dapat dikonfirmasi melalui Whatsapp business pada halaman riwayat transaksi Anda jika pesanan ini Anda kirim.</p>
                                     </div>

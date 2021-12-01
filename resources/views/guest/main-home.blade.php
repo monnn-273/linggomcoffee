@@ -167,7 +167,7 @@
 							<h3><a href="#">{{$product->nama_produk}}</a></h3>
 							<p>{{$product->description}}</p>
 							<p class="price"><span>@currency($product->harga)</span></p>
-							<p><a href="{{__('/user/cart')}}" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+							<p><a href="{{__('/user/product')}}" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
 						</div>
 					</div>
 				</div>

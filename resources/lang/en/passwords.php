@@ -13,7 +13,7 @@ return [
     |
     */
 
-    // 'reset' => 'Password And berhasil diubah!',
+    'reset' => 'Password Anda berhasil diubah!',
     'sent' => 'Email untuk link reset password Anda sudah kami kirim. Harap periksa email Anda! ',
     'throttled' => 'Please wait before retrying.',
     'token' => 'Link reset ini sudah kadaluarsa.',

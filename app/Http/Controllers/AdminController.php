@@ -116,7 +116,6 @@ class AdminController extends Controller
     }
 
 
-
     public function add_product_page()
     {
         return view('administrator.add_product');
@@ -129,10 +128,10 @@ class AdminController extends Controller
         $product->nama_produk = htmlspecialchars($request->nama_produk);
         $product->harga= htmlspecialchars($request->harga);
         $product->stock = htmlspecialchars($request->stock);
-        $product->deskripsi = htmlspecialchars($request->description);
+        $product->deskripsi = htmlspecialchars($request->deskripsi);
         $product->masa_preorder = htmlspecialchars($request->masa_preorder);
         $product->berat = htmlspecialchars($request->berat);
-        $product->kondisi_produk = 'kopi bubuk';
+        $product->kondisi_produk = htmlspecialchars($request->kondisi_produk);
         
         
         if($request->hasFile('gambar')){
