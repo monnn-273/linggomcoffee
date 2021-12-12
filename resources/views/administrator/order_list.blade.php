@@ -61,7 +61,6 @@
                 </div>
               </div>
               <div class="card-body">
-              <br><br><br>
               <table class="table align-items-center table-flush">
                   <thead class="thead-light">
                     <tr>
@@ -100,23 +99,23 @@
                           {{$bill->shipping_status}}
                         </td>
                         <td colspan="3">
-                          <div class="row">
+                          <div class="row justify-content-between">
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                               <form action="{{__('/admin/editBills')}}" method="post">
                                 @csrf 
                                 <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
-                                <button type="submit" class="btn btn-success " href="{{__('/admin/editBills')}}"><i class="fa fa-pen-square" aria-hidden="true"></i></button>
+                                <button type="submit" class="btn btn-success " href="{{__('/admin/editBills')}}"><i class="fa fa-pen" aria-hidden="true"></i></button>
                               </form>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                               <form action="{{__('/admin/deleteBills')}}" method="post">
                                 @csrf
                                 <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
                                 &nbsp;<button class="btn btn-danger" href="{{__('/admin/deleteBills')}}" onclick="return confirm('Apakah Anda yakin ingin menghapus data billing ini? Anda tidak akan dapat mengembalikan data yang telah dihapus.')"><i class="fa fa-trash" aria-hidden="true"></i></button>
                               </form>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                               <form action="{{__('/admin/billDetail')}}" method="get">
                                 @csrf
                                 <input type="text" value="{{$bill->id}}" name="bill_id" hidden>

@@ -76,8 +76,8 @@
               <h2 class="ftco-heading-2">Contact Us</h2>
               <div class="block-23 mb-3">
                 <ul>
-                  <li><span class="icon icon-map-marker"></span><span class="text">Jl. Empat Lima, Batang Beruh, Dairi Regency, North Sumatra 22212</span></li>
-                  <li><a href="https://wa.me/6285362888055"><span class="icon icon-phone"></span><span class="text">+62 853-6288-8055</span></a></li>
+                  <li><a href="https://goo.gl/maps/eFsfCLhXJrmWuap29"><span class="icon icon-map-marker"></span><span class="text">Jl. Empat Lima, Batang Beruh, Dairi Regency, North Sumatra 22212</span></a></li>
+                  <li><a href="https://wa.me/6285362888055"><span class="icon icon-phone"></span><span class="text">+62 853-6288-8055 (Whatsapp)</span></a></li>
                   <li><a href="mailto:linggomcoffee@gmail.com"><span class="icon icon-envelope"></span><span class="text">linggomcoffee@gmail.com</span></a></li>
                   <li><a href="https://www.tokopedia.com/linggomcoffee" target="blank"><span class="icon icon-shopping_cart"></span><span class="text">Visit Linggom Coffee in Tokopedia </span></a></li>
                   <li><a href="https://l.wl.co/l?u=https%3A%2F%2Fwww.blibli.com%2Fmerchant%2Fumkm-linggom-coffee%2FLIC-70078" target="blank"><span class="icon icon-shopping_cart"></span><span class="text">Visit Linggom Coffee in Blibli.com </span></a></li>                

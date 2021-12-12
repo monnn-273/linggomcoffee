@@ -54,72 +54,73 @@
 @section ('content')
     <!-- Page content -->
     <div class="container-fluid mt--6">
-
-        <div class="row">
-            <div class="col">
-            <div class="card bg-primary-2 shadow">
-                <div class="card-header bg-transparent border-0">
-                <h3 class="text-dark mb-0">Riwayat Penjualan</h3>
-                </div>
-                <div class="table-responsive">
-                <table class="table align-items-center bg-primary-2 table-flush">
-                    <thead class="thead-light">
+      <div class="row">
+        <div class="col">
+          <div class="card bg-primary-2">
+            <div class="card-header bg-transparent border-0">
+              <h3 class="text-dark mb-0">Riwayat Penjualan</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center bg-primary-2 table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th>No</th>
+                    <th>Riwayat Penjualan</th>
+                    <th>Daftar Pesanan</th>
+                    <th>Total Pembayaran</th>
+                    <th>Status Pengiriman</th>
+                    <th>Status Pembayaran</th>
+                </tr>
+                </thead>
+                <tbody>
+                  @if($bills->count()==0)
                     <tr>
-                        <th scope="col" class="sort" data-sort="name">No</th>
-                        <th scope="col" class="sort" data-sort="name">Riwayat Penjualan</th>
-                        <th scope="col" class="sort" data-sort="budget">Daftar Pesanan</th>
-                        <th scope="col" class="sort" data-sort="status">Total Pembayaran</th>
-                        <th scope="col">Status Pengiriman</th>
-                        <th scope="col" class="sort" data-sort="completion">Status Pembayaran</th>
+                      <td colspan="3">
+                      <h5>Anda belum memiliki riwayat penjualan produk apapun melalui website ini.</h5>
+                      </td>
                     </tr>
-                    </thead>
-                    <tbody class="list">
-                      @if($bills->count()==0)
-                        <tr>
-                          <td colspan="3">
-                          <h5>Anda belum memiliki riwayat penjualan produk apapun melalui website ini.</h5>
-                          </td>
-                        </tr>
-                      @endif
-                      @php($i=1)
-                      @foreach($bills as $bill)   
-                        <tr>
-                            <td>{{$i}}</td>
-                            <td>
-                              <!-- Detail Pemesan -->
-                              Atas nama         &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill->customer->name}} <br><br>
-                              Alamat Pengiriman &nbsp;&nbsp;&nbsp;&nbsp;: {{$bill->shippingAddress}} <br><br>
-                              Ongkos Kirim      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: @currency($bill->expedition->cost) <br><br>
-                              Kurir             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{strtoupper($bill->expedition->courier)}} ({{$bill->expedition->service}}) <br><br>
-                              Estimasi Waktu    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill->expedition->etd}} Hari
-                            </td>
-                            <td>
-                                @foreach($cartDetails as $cartDetail)                   
-                                    {{$cartDetail->products->nama_produk}} x <strong>{{$cartDetail->quantity}}</strong><br>
-                                @endforeach	
-                            </td>
-                            <td>
-                                @currency($bill->payment)
-                            </td>
-                            <td>
-                              {{$bill->shipping_status}}
-                            </td>
-                            <td>
-                              {{$bill->payment_status}}
-                            </td>
-                        </tr>
-                        <hr>
-
-                        @php($i++)
-                      @endforeach
-                      <tr>
-                        <td colspan="5"><center> <h3>Total penjualan melalui website: @currency($sold)</h3></center></td>
-                      </tr>
-                    </tbody>
-                </table>
-                </div>
+                  @endif
+                  @php($i=1)
+                  @foreach($bills as $bill)   
+                    <tr>
+                        <td>{{$i}}</td>
+                        <td>
+                          <!-- Detail Pemesan -->
+                          Atas nama         &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill->customer->name}} <br><br>
+                          Alamat Pengiriman &nbsp;&nbsp;&nbsp;&nbsp;: {{$bill->shippingAddress}} <br><br>
+                          Kode Pos &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {{$bill->expedition->postal_code}} <br><br>
+                          Ongkos Kirim      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: @currency($bill->expedition->cost) <br><br>
+                          Kurir             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{strtoupper($bill->expedition->courier)}} ({{$bill->expedition->service}}) <br><br>
+                          Estimasi Waktu    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill->expedition->etd}} Hari
+                        </td>
+                        <td>
+                          @foreach($cartDetails as $cartDetail)  
+                            @if($cartDetail -> customerId == $bill->customerId  && $cartDetail->bill_id == $bill->id)               
+                              {{$cartDetail->products->nama_produk}} x <strong>{{$cartDetail->quantity}}</strong><br>
+                            @endif
+                          @endforeach	
+                        </td>
+                        <td>
+                          @currency($bill->payment)
+                        </td>
+                        <td>
+                          {{$bill->shipping_status}}
+                        </td>
+                        <td>
+                          {{$bill->payment_status}}
+                        </td>
+                    </tr>
+                    @php($i++)
+                  @endforeach
+                  <tr>
+                    <td colspan="5"><center> <h3>Total penjualan melalui website: @currency($sold)</h3></center></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 @endsection ('content')
 

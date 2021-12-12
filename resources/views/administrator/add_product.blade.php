@@ -66,16 +66,12 @@
         </div>
       </div>
 
-      <!-- card body -->
       <div class="card-body">
+        <!-- FORM TAMBAH PRODUK -->
         <form action="{{__('/admin/store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <h6 class="heading-small text-muted mb-4">Informasi Produk</h6>
           <div class="pl-lg-4">
-            {{-- <div class="row">
-              <label for="image">Tambahkan gambar</label> <br>
-              <input type="file" name="gambar">
-            </div> --}}
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
@@ -142,15 +138,13 @@
           <!-- Deskripsi -->
           <h6 class="heading-small text-muted mb-4">Deskripsi Produk</h6>
             <div class="form-group">
-              <textarea rows="4" class="form-control" name="deskripsi" id="description">
-                Deskripsikan Produk dengan singkat dan jelas...
-              </textarea>
+              <textarea rows="3" class="form-control" name="deskripsi" id="description" placeholder="Deskripsikan produk Anda."></textarea>
             </div>
           <div class="row justify-content-center">
             <button type="submit" class="btn btn-success btn-lg"><i class="fa fa-save"></i>&nbsp;Simpan</button>
           </div>
-        
         </form>
+        <!-- AKHIR FORM TAMBAH PRODUK -->
       </div>
     </div>
   </div>

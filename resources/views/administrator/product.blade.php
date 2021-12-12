@@ -83,11 +83,12 @@
               <table class="table align-items-center table-flush">
                   <thead class="thead-light">
                     <tr>
-                      <th >Gambar</th>
-                      <th >Nama Produk</th>
-                      <th >Harga</th>
-                      <th >Stock</th>
-                      <th  class="text-center" colspan="3">Aksi</th>
+                      <th>Gambar</th>
+                      <th>Nama Produk</th>
+                      <th>Harga</th>
+                      <th>Stock</th>
+                      <th>Deskripsi Singkat</th>
+                      <th  class="text-center" colspan="2">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -107,24 +108,24 @@
                       <td>
                         {{$product->stock}}
                       </td>
-                      <td colspan="3">
-                        <div class="row justify-content-center">
+                      <td>
+                        Waktu preorder : {{$product->masa_preorder}} <br>
+                        Berat : {{$product->berat}}
+                      </td>
+                      <td colspan="2">
+                        <div class="row">
                           <div class="col-md-4">
-                            <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen-square" aria-hidden="true"></i>&nbsp;Edit</a>
+                            <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen" aria-hidden="true"></i></a>
                           </div>
                           <div class="col-md-4">
                             <form action="{{__('/admin/hapus_produk')}}" method="post">
                               @csrf
                               <input type="text" name="produk_id" value="{{$product->id}}" hidden>
-                              <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Yakin ingin menghapus data pengguna? Seluruh data pemesanan dan data lain terkait pengguna ini akan ikut terhapus.')"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
+                              <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Yakin ingin menghapus data produk? Seluruh data pemesanan dan produk yang berada di keranjang pengguna terkait produk ini akan ikut terhapus.')"><i class="fa fa-trash"></i></button>
                             </form>
-                          </div>
-                          <div class="col-md-4">
-                            <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-info-circle"></i>&nbsp;Detail</a>
                           </div>
                         </div>
                       </td>
-                  
                     </tr>
                     @endforeach
                   </tbody>
@@ -135,8 +136,8 @@
         </div>
         <!-- akhir product list -->
 
-                      </div>
-                      </div>
+        </div>
+        </div>  
       </div>
   </div>
   <!-- required scripts -->

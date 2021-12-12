@@ -43,8 +43,8 @@
 @endsection('sidenav')
 
 @section('path')
-    <li class="breadcrumb-item active" aria-current="page"> <a href="{{__('/admin/order_list')}}">Daftar Pesanan</a> </li>
-    <li class="breadcrumb-item active" aria-current="page">Detail Pesanan</li>
+  <li class="breadcrumb-item active" aria-current="page"> <a href="{{__('/admin/order_list')}}">Daftar Pesanan</a> </li>
+  <li class="breadcrumb-item active" aria-current="page">Detail Pesanan</li>
 @endsection('path')
 
 @section ('content')
@@ -58,47 +58,48 @@
             </div>
             <div class="table-responsive">
               <table class="table align-items-center bg-primary-2 table-flush">
-                  <thead class="thead-light">
-                    <tr>
-                        <th scope="col" class="sort" data-sort="name">Detail Pemesan</th>
-                        <th scope="col" class="sort" data-sort="budget">Daftar Pesanan</th>
-                        <th scope="col" class="sort" data-sort="status">Total Pembayaran</th>
-                        <th scope="col">Status Pengiriman</th>
-                        <th scope="col" class="sort" data-sort="completion">Status Pembayaran</th>
-                        <th scope="col"></th>
-                    </tr>
-                  </thead>
-                  <tbody class="list">         
-                    <tr>
-                        <td>
-                          <!-- Detail Pemesan -->
-                          Atas nama         &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill[0]->customer->name}} <br><br>
-                          Alamat Pengiriman &nbsp;&nbsp;&nbsp;&nbsp;: {{$bill[0]->shippingAddress}} <br><br>
-                          Ongkos Kirim      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: @currency($bill[0]->expedition->cost) <br><br>
-                          Kurir             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{strtoupper($bill[0]->expedition->courier)}} ({{$bill[0]->expedition->service}}) <br><br>
-                          Estimasi Waktu    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill[0]->expedition->etd}} Hari
-                        </td>
-                        <td>
-                            @foreach($cartDetails as $cartDetail)                   
-                                {{$cartDetail->products->nama_produk}} x <strong>{{$cartDetail->quantity}}</strong><br>
-                            @endforeach	
-                        </td>
-                        <td>
-                            @currency($bill[0]->payment)
-                        </td>
-                        <td>
-                            {{$bill[0]->shipping_status}}
-                        </td>
-                        <td>
-                          {{$bill[0]->payment_status}}
-                        </td>
-                    </tr>
-                    <hr>
-                  </tbody>
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Detail Pemesan</th>
+                    <th scope="col">Daftar Pesanan</th>
+                    <th scope="col">Total Pembayaran</th>
+                    <th scope="col">Status Pengiriman</th>
+                    <th scope="col">Status Pembayaran</th>
+                  </tr>
+                </thead>
+                <tbody class="list">         
+                  <tr>
+                    <td>
+                      <!-- Detail Pemesan -->
+                      Atas nama         &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill[0]->customer->name}} <br><br>
+                      Alamat Pengiriman &nbsp;&nbsp;&nbsp;&nbsp;: {{$bill[0]->shippingAddress}} <br><br>
+                      Kode Pos : {{$bill[0]->expedition->postal_code}} <br>
+                      Ongkos Kirim      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: @currency($bill[0]->expedition->cost) <br><br>
+                      Kurir             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{strtoupper($bill[0]->expedition->courier)}} ({{$bill[0]->expedition->service}}) <br><br>
+                      Estimasi Waktu    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$bill[0]->expedition->etd}} Hari
+                    </td>
+                    <td>
+                      @foreach($cartDetails as $cartDetail)                   
+                        {{$cartDetail->products->nama_produk}} x <strong>{{$cartDetail->quantity}}</strong><br>
+                      @endforeach	
+                    </td>
+                    <td>
+                      @currency($bill[0]->payment)
+                    </td>
+                    <td>
+                      {{$bill[0]->shipping_status}}
+                    </td>
+                    <td>
+                      {{$bill[0]->payment_status}}
+                    </td>
+                  </tr>
+                  <hr>
+                </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+    </div>
 @endsection ('content')
 

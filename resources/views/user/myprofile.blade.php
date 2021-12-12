@@ -149,7 +149,7 @@
                             <div class="col-md-12">
                                 <div class="form-group mt-4">
                                     <div class="row justify-content-center">
-                                        <button type="submit" class="btn btn-primary p-3 px-xl-4 py-xl-3"><i class="fa fa-save"></i>&nbsp;Simpan Perubahan</button> 
+                                        <button type="submit" class="btn btn-primary p-3 px-xl-4 py-xl-3 text-white"><i class="fa fa-save"></i>&nbsp;Simpan Perubahan</button> 
                                     </div>
                                 </div>
                             </div>

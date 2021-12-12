@@ -60,7 +60,7 @@
                 <div class="col">
                   <h6 class="text-uppercase text-muted ls-1 mb-1">Products List</h6>
                   <h5 class="h3 mb-0">Linggom Coffee Products</h5>
-                  <br><br>
+                  <br>
                     @if(session('status'))
                       <div class="alert alert-success alert-dismissible fade show" role="alert">
                           <span class="alert-icon"><i class="ni ni-like-2"></i></span>
@@ -70,7 +70,7 @@
                           </button>
                       </div>
                     @endif
-                    <br><br>
+                    <br>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 <i class="ni ni-fat-add"></i>
                 Tambah Produk Baru
               </a>
-            <br><br><br>
+              <br><br>
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
@@ -87,7 +87,8 @@
                     <th scope="col">Nama Produk</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Stock</th>
-                    <th scope="col" class="text-center" colspan="3">Aksi</th>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col" class="text-center" colspan="2">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -107,27 +108,29 @@
                     <td>
                       {{$product->stock}}
                     </td>
-                    <td colspan="3">
+                    <td>
+                      Waktu preorder: {{$product->masa_preorder}} <br>
+                      Berat : {{$product->berat}} gram <br>
+                    </td>
+                    <td colspan="2">
                       <div class="row justify-content-center">
                         <div class="col-md-4">
-                          <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen-square" aria-hidden="true"></i>&nbsp;Edit</a>
+                          <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen" aria-hidden="true"></i>&nbsp;Edit</a>
                         </div>
+                        &nbsp;
                         <div class="col-md-4">
                           <form action="{{__('/admin/hapus_produk')}}" method="post">
                             @csrf
                             <input type="text" name="produk_id" value="{{$product->id}}" hidden>
-                            <button type="submit" class="btn btn-danger btn-lg d-inline" onclick="return confirm('Yakin ingin menghapus produk ini? Anda tidak akan dapat mengembalikan data produk setelah dihapus.')"><i class="fa fa-trash"></i>Hapus</button>
+                            <button type="submit" class="btn btn-danger btn-lg d-inline" onclick="return confirm('Yakin ingin menghapus produk ini? Anda tidak akan dapat mengembalikan data produk setelah dihapus.')"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
                           </form>
-                        </div>
-                        <div class="col-md-4">
-                          <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-info-circle"></i>&nbsp;Detail</a>
                         </div>
                       </div>
                     </td>
                   </tr>
                   @endforeach
                   <tr>
-                    <td colspan="7" class="text-center"><a href="{{('/admin/produk')}}" class="btn btn-primary btn-sm">Semua Produk</a></td>
+                    <td colspan="7" class="text-center"><a href="{{('/admin/produk')}}" class="btn btn-primary">Semua Produk</a></td>
                   </tr>
                 </tbody>
               </table>
@@ -139,6 +142,7 @@
 
       
       <div class="row">
+        
         <!-- list orderan -->
         <div class="col-xl-8">
           <div class="card">
@@ -148,7 +152,7 @@
                   <h3 class="mb-0">Daftar Pesanan</h3>
                 </div>
                 <div class="col text-right">
-                  <a href="{{__('/admin/order_list')}}" class="btn btn-sm btn-primary">Semua Pesanan</a>
+                  <a href="{{__('/admin/order_list')}}" class="btn btn-primary">Semua Pesanan</a>
                 </div>
               </div>
             </div>

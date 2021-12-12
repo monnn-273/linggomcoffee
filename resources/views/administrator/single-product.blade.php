@@ -61,10 +61,11 @@
             </div>
             <div class="card-body">
               <!-- UPDATE FORM -->
-              <form action="/admin/update_produk" method="POST" class="needs-validation" enctype="multipart/form-data">
+              <form action="{{__('/admin/update_produk')}}" method="POST" class="needs-validation" enctype="multipart/form-data">
               @csrf
-              <!-- hidden input -->
+                <!-- hidden input -->
                 <input type="hidden" value="{{$product->id}}" name="produk_id" hidden>
+                <input type="text" value="{{$product->gambar}}" name="old_gambar" hidden>
                 <h6 class="heading-small text-muted mb-4">Gambar Produk</h6>
                 
                 <table class="table table-flush text-center">
@@ -80,7 +81,7 @@
                     <label class="form-control-label">Ubah gambar</label>
                     <div class="input-group mb-3">
                       <div class="custom-file">
-                        <input type="file" name="gambar">  
+                        <input type="file" name="gambar" id="gambar">
                       </div>
                     </div>
                   </div>
@@ -151,7 +152,7 @@
                   <div class="form-group">
                     <textarea rows="10" col="30" id="description" class="form-control" placeholder="Kata-kata yang menjelaskan produk Anda secara singkat, padat, dan jelas" name="deskripsi">{{ $product->deskripsi }}</textarea>
                   </div>
-                <div class="row justify-content-end container">
+                <div class="row justify-content-center">
                   <button type="submit" class="btn btn-success d-inline"><i class="fa fa-save"></i>&nbsp;Simpan Perubahan</button>
               </form>
               <!-- END UPDATE FORM-->
@@ -171,3 +172,4 @@
 <!-- required scripts -->
 @include('sweetalert::alert')
 @endsection('content')
+

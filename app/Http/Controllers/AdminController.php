@@ -21,12 +21,12 @@ class AdminController extends Controller
     {
         $cartDetails = CartDetail::all();
         // Daftar Pesanan adalah pesanan yang pembayarannya belum diverifikasi ataupun produknya belum dikirimkan
-        $bills = Bill::where('payment_status','not verified')->orWhere('shipping_status', 'belum dikirim')->get();
+        $bills = Bill::where('payment_status','not verified')
+                ->orWhere('shipping_status','!=','sudah dikirim')
+                ->get();
 
-        //Data yang ada pada history penjualan adalah produk yang pembayarannya sudah diverifikasi dan produk sudah dikirimkan 
-        $bills2 = Bill::where([
-            'payment_status'=>'verified'
-        ])->get();
+        //Data yang ada pada history penjualan adalah produk yang pembayarannya sudah diverifikasi dan produk sudah dikirim
+        $bills2 = Bill::where('payment_status','verified')->get();
         $products = Product::paginate(3);
         $sold = Bill::where('payment_status', 'verified')->sum('payment');
         $user = User::where('role', 'user')->count();
@@ -34,25 +34,29 @@ class AdminController extends Controller
     }
     public function order_list() 
     {
-        $bills = Bill::where('payment_status','not verified')->orWhere('shipping_status', 'belum dikirim')->get();
+        $bills = Bill::where('payment_status','not verified')
+                ->orWhere('shipping_status','!=','sudah dikirim')
+                ->get();
         $cartDetails = CartDetail::all(); 
         return view('administrator.order_list',compact('bills','cartDetails'));
     }
     
-    public function product() {
+    public function product() 
+    {
         $products = Product::all();
         return view('administrator.product',compact('products'));
     }
 
-    public function profile() {
+    public function profile() 
+    {
         return view('administrator.profile');
     }
 
-    public function history() {
-        // data penjualan yang ditampilkan adalah data penjualan yang pembarayannya sudah terverifikasi 
-        //dan produk sudah dalam pengiriman (to be considered)
+    public function history() 
+    {
+        // data penjualan yang ditampilkan adalah data penjualan yang pembarayannya sudah terverifikasi
         $cartDetails = CartDetail::all(); 
-        $bills = Bill::where('payment_status','verified')->get();
+        $bills = Bill::where('payment_status', 'verified')->get();
         return view('administrator.history', compact('bills','cartDetails'));
     }
 
@@ -75,11 +79,9 @@ class AdminController extends Controller
     }
 
     // update data produk
-    public function update(Request $request)
+    public function update_product(Request $request)
     {
-
-        $product = Product::find($request->id);  
- 
+        $product = Product::find($request->produk_id);
         //memeriksa validasi inputan
         $this->validate($request, [
             'nama_produk' => 'required|string|min:3',
@@ -98,23 +100,22 @@ class AdminController extends Controller
             'berat' =>htmlspecialchars($request->berat),
         ]);
  
-        //memeriksa apakah ada inputan file gambar
         if($request->hasFile('gambar'))
         {
-            // validasi gambar
+
+            //hapus foto yang lama 
+            //memeriksa validasi inputan file gambar
             $this->validate($request, [
-                'gambar' => 'image|mimes:jpg,png,jpeg|max:2048',
+                'gambar' => 'required|image|mimes:jpg,png,jpeg|max:2048'
             ]);
-
-            //mengambil gambar dan menyimpannya di folder tujuan dengan nama asli
-            $request->file('gambar')->move('images/products/', $request->file('gambar')->getClientOriginalName());
+            unlink("images/".$request->old_gambar);
+            $location = public_path('images');
+            $request-> file('gambar')->move($location, $request->file('gambar')->getClientOriginalName());
             $product->gambar = $request->file('gambar')->getClientOriginalName();
-            $product->save();
         }
-
+        $product->save();
         return redirect('/admin/produk')->withSuccess('Perubahan berhasil disimpan!');
     }
-
 
     public function add_product_page()
     {
@@ -225,16 +226,25 @@ class AdminController extends Controller
         return redirect('/admin/users')->withSuccess('Data Pengguna berhasil diubah! Website memiliki Administrator baru.');
     }
 
+    public function update_admin(Request $request)
+    {
+        User::where('id',$request->user_id)->update([
+            "role" => "user",
+        ]);
+
+        return redirect('/admin/users')->withSuccess('Data Pengguna berhasil diubah! Administrator kembali menjadi user biasa.');
+    }
+
     public function delete_user(Request $request)
     {
         Cart::where('customerId',$request->user_id)->delete();
-        $bill = Bill::where('customerId',$request->user_id)->select('id')->get();
-        if($bill->count ()> 0)
+        $bill_id = Bill::where('customerId',$request->user_id)->select('id')->get();
+        Bill::where('customerId',$request->user_id)->delete();
+        if($bill_id->count() > 0)
         {
-            Expedition::where('bill_id',$bill)->delete();
+            Expedition::where('bill_id', $bill_id)->delete();
         }
         CartDetail::where('customerId',$request->user_id)->delete();
-        Bill::where('customerId',$request->user_id)->delete();
         User::where('id', $request->user_id)->delete();
 
         return redirect('/admin/users')->withSuccess('Data Pengguna berhasil Dihapus!');

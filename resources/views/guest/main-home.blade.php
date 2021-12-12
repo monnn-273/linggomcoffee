@@ -122,22 +122,22 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="menu-entry">
-								<a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+								<a href="#" class="img" style="background-image: url({{asset('../images/about.jpg')}});"></a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="menu-entry mt-lg-4">
-								<a href="#" class="img" style="background-image: url(images/menu-2.jpg);"></a>
+								<a href="#" class="img" style="background-image: url({{asset('../images/about.jpg')}});"></a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="menu-entry">
-								<a href="#" class="img" style="background-image: url(images/menu-3.jpg);"></a>
+								<a href="#" class="img" style="background-image: url({{asset('../images/image_1.jpg')}});"></a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="menu-entry mt-lg-4">
-								<a href="#" class="img" style="background-image: url(images/menu-4.jpg);"></a>
+								<a href="#" class="img" style="background-image: url({{asset('../images/image_1.jpg')}});"></a>
 							</div>
 						</div>
 					</div>
@@ -192,16 +192,16 @@
 		</div>
 		<div class="container-wrap">
 			<div class="row d-flex no-gutters">
-			<div class="col-lg align-self-sm-end ftco-animate">
-				<div class="testimony">
-					<blockquote>
-					<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
-					</blockquote>
-					<div class="author d-flex mt-4">
-					<div class="image mr-3 align-self-center">
-						<img src="images/person_1.jpg" alt="">
-					</div>
-					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+				<div class="col-lg align-self-sm-end ftco-animate">
+					<div class="testimony">
+						<blockquote>
+							<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
+						</blockquote>
+						<div class="author d-flex mt-4">
+						<div class="image mr-3 align-self-center">
+							<img src="{{asset('../images/person_1.jpg')}}" alt="">
+						</div>
+						<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
 					</div>
 				</div>
 			</div>
@@ -225,7 +225,7 @@
 					</blockquote>
 					<div class="author d-flex mt-4">
 					<div class="image mr-3 align-self-center">
-						<img src="images/person_3.jpg" alt="">
+						<img src="{{asset('../images/person_3.jpg')}}" alt="">
 					</div>
 					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
 					</div>
@@ -238,7 +238,7 @@
 					</blockquote>
 					<div class="author d-flex mt-4">
 					<div class="image mr-3 align-self-center">
-						<img src="images/person_2.jpg" alt="">
+						<img src="{{asset('images/person_2.jpg')}}" alt="">
 					</div>
 					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
 					</div>
@@ -251,7 +251,7 @@
 				</blockquote>
 				<div class="author d-flex mt-4">
 					<div class="image mr-3 align-self-center">
-					<img src="images/person_3.jpg" alt="">
+					<img src="{[asset('../images/person_3.jpg')}}" alt="">
 					</div>
 					<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
 				</div>

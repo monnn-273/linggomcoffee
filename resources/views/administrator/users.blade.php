@@ -101,7 +101,28 @@
                                             </div>
                                         </div>
                                         @else
-                                        Akun ini merupakan akun administrator
+                                          @if($user->id == 1)
+                                          Ini adalah akun super administrator.
+                                          @else
+                                          Ini adalah akun administrator.
+                                          <div class="row">
+                                            <div class="col-md-12">
+                                              <form action="{{__('/admin/update_admin')}}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                <button class="btn btn-info btn-lg d-inline px-5" type="submit" onclick="return confirm('Yakin ingin mengubah akun ini menjadi user biasa?')"><i class="fa fa-minus"></i>&nbsp;Jadikan User</button>
+                                              </form>
+                                            </div>
+                                            &nbsp;
+                                            <div class="col-md-12">
+                                              <form action="{{__('/admin/delete_user')}}" method="POST">
+                                                @csrf
+                                                  <input type="hidden" name="user_id" value="{{$user->id}}">
+                                                  <button class="btn btn-danger btn-lg d-inline px-5" type="submit" onclick="return confirm('Yakin ingin menhapus pengguna ini? Jika pengguna ini dihapus, maka seluruh data termasuk pesanan dan riwayat pemesanan atas nama pengguna ini juga akan dihapus.')"><i class="fa fa-trash"></i>&nbsp;Hapus Pengguna</button>
+                                              </form>
+                                            </div>
+                                          </div>
+                                          @endif
                                         @endif
                                     </td>
                                 </tr>

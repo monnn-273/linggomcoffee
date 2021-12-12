@@ -2,7 +2,8 @@
   use App\Models\Bill;
   use App\Models\User;
   $sold = Bill::where('payment_status', 'verified')->sum('payment');
-  $user = User::where('role', 'user')->count();
+  $user = User::count();
+  $active_user = $user - 1;
 ?>
 <!DOCTYPE html>
 <html>
@@ -159,7 +160,6 @@
                 </div>
               </div>
 
-
               <div class="col-xl-4 col-md-6">
                 <div class="card card-stats">
                   <!-- Card body -->
@@ -167,7 +167,7 @@
                     <div class="row">
                       <div class="col">
                         <h5 class="card-title text-uppercase text-muted mb-0">Jumlah Pengguna</h5>
-                        <span class="h2 font-weight-bold mb-0">{{$user}}</span>
+                        <span class="h2 font-weight-bold mb-0">{{$active_user}}</span>
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
@@ -219,7 +219,6 @@
   </div>
     <!-- Argon Scripts -->
     <!-- Core -->
-    <script src="//cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
     <script src="{{asset('assets/vendor/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('assets/vendor/js-cookie/js.cookie.js')}}"></script>
@@ -233,11 +232,5 @@
 
     <!-- sweet alert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
-    <!-- SCRIPT UNTUK REPLACE TEXT AREA DENGAN CKEDITOR -->
-    <script type="text/javascript">
-      CKEDITOR.replace('description',{height:"200px"}); 
-    </script>
-
   </body>
 </html>

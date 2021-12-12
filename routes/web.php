@@ -23,7 +23,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/history', [AdminController::class, 'history']);
     Route::get('/admin/detail_produk', [AdminController::class, 'single_product']);
     Route::post('/admin/hapus_produk', [AdminController::class, 'delete']);
-    Route::post('/admin/update_produk', [AdminController::class, 'update']);
+    Route::post('/admin/update_produk', [AdminController::class, 'update_product']);
     Route::get('/admin/tambah_produk', [AdminController::class, 'add_product_page']);
     Route::post('/admin/add', [AdminController::class, 'create']);
     Route::post('/admin/store', [AdminController::class, 'store']);
@@ -36,6 +36,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/billDetail', [AdminController::class, 'billDetail']);
     Route::get('/admin/users', [AdminController::class, 'users']);
     Route::post('/admin/update_user', [AdminController::class, 'update_user']);
+    Route::post('/admin/update_admin', [AdminController::class, 'update_admin']);
     Route::post('/admin/delete_user', [AdminController::class, 'delete_user']);
 });
 

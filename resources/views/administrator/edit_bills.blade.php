@@ -43,8 +43,8 @@
 @endsection('sidenav')
 
 @section('path')
-    <li class="breadcrumb-item" aria-current="page"> <a href="{{__('/admin/order_list')}}">Daftar Pesanan</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+  <li class="breadcrumb-item" aria-current="page"> <a href="{{__('/admin/order_list')}}">Daftar Pesanan</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Edit</li>
 @endsection('path')
 
 @section ('content')
@@ -65,8 +65,8 @@
                         <th scope="col" class="sort" data-sort="name">Detail Pemesan</th>
                         <th scope="col" class="sort" data-sort="budget">Daftar Pesanan</th>
                         <th scope="col" class="sort" data-sort="status">Total Pembayaran</th>
-                        <th scope="col">Status Pembayaran</th>
-                        <th scope="col" class="sort" data-sort="completion">Status Pengiriman</th>
+                        <th scope="col">Status Pengiriman</th>
+                        <th scope="col" class="sort" data-sort="completion">Status Pembayaran</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -96,9 +96,11 @@
                                 </td>
                                 <td>
                                     <select name="shipping_status" class="form-control">
-                                        <option value="{{$bill[0]->shipping_status}}" selected>sedang dikemas</option>
-                                        <option value="sedang dalam pengiriman">sedang dalam pengiriman</option>
+                                        <option value="{{$bill[0]->shipping_status}}" selected>{{$bill[0]->shipping_status}}</option>
+                                        <option value="sedang dikemas">sedang dikemas</option>
                                         <option value="belum dikemas">belum dikemas</option>
+                                        <option value="sudah dikirim">sudah dikirim</option>
+                                        <option value="sudah sampai">sudah sampai</option>
                                     </select>
                                 </td>
                                 <td>
