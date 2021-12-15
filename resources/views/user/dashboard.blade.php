@@ -129,22 +129,22 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="menu-entry">
-								<a href="#" class="img" style="background-image: url({{asset('images/menu-1.jpg')}});"></a>
+								<a href="#" class="img" style="background-image: url({{asset('images/gallery-1.jpg')}});"></a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="menu-entry mt-lg-4">
-								<a href="#" class="img" style="background-image: url({{asset('images/menu-2.jpg')}});"></a>
+								<a href="#" class="img" style="background-image: url({{asset('images/gallery-2.jpg')}});"></a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="menu-entry">
-								<a href="#" class="img" style="background-image: url({{asset('images/menu-3.jpg')}});"></a>
+								<a href="#" class="img" style="background-image: url({{asset('images/gallery-3.jpg')}});"></a>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="menu-entry mt-lg-4">
-								<a href="#" class="img" style="background-image: url({{asset('images/menu-4.jpg')}});"></a>
+								<a href="#" class="img" style="background-image: url({{asset('images/gallery-4.jpg')}});"></a>
 							</div>
 						</div>
 					</div>
@@ -214,7 +214,7 @@
 					<span class="subheading">Testimony</span>
 					<br>
 					<h2 class="mb-4">Dari mereka yang sudah membeli</h2>
-					<p>Testimonial diberikan oleh pelanggan dari berbagai daerah</p>
+					<p>Testimonial ini diberikan dari pelanggan yang sudah mencicipi produk Linggom Coffee.</p>
 				</div>
 			</div>
 		</div>
@@ -225,13 +225,13 @@
 				<div class="col-lg align-self-sm-end ftco-animate">
 					<div class="testimony">
 						<blockquote>
-						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
+							<p>&ldquo;Bangga! Buatan Dairi, rasanya sudah pasti enak dan aromanya juga dijamin membuat candu.&rdquo;</p>
 						</blockquote>
 						<div class="author d-flex mt-4">
 							<div class="image mr-3 align-self-center">
-								<img src="images/person_1.jpg" alt="">
+								<!-- <img src="{{asset('../images/person_1.jpg')}}" alt=""> -->
 							</div>
-							<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+							<div class="name align-self-center">Samuel Girsang <span class="position">National Tsing Hua University Student, Taiwan</span></div>
 						</div>
 					</div>
 				</div>
@@ -239,13 +239,13 @@
 				<div class="col-lg align-self-sm-end">
 					<div class="testimony overlay">
 						<blockquote>
-						<p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
+							<p>&ldquo;Masalah rasa apalagi aroma kopi, jangan ditanya lagi! Teman-teman di Amerika juga jadi kecanduan.&rdquo;</p>
 						</blockquote>
 						<div class="author d-flex mt-4">
 							<div class="image mr-3 align-self-center">
-								<img src="images/person_2.jpg" alt="">
+								<!-- <img src="images/person_2.jpg" alt=""> -->
 							</div>
-							<div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+							<div class="name align-self-center">Jonathan Lumban Batu <span class="position">Computer Science Student, Diablo Valley College</span></div>
 						</div>
 					</div>
 				</div>

@@ -100,7 +100,7 @@
 												<div class="input-group mb-3">
 													<input type="text" value="{{$cart->id}}" name="cart_id" hidden>
 													<input type="number" name="quantity" class="quantity form-control input-number" value="{{$cart->quantity}}" min="1" max="100">
-													<button type="submit" class="btn btn-outline-primary px-2">Tetapkan</button>
+													<button type="submit" class="btn btn-outline-primary px-2"><p class="text-white">Tetapkan</p></button>
 												</div>
 											</form>
 										</td>

@@ -38,6 +38,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/update_user', [AdminController::class, 'update_user']);
     Route::post('/admin/update_admin', [AdminController::class, 'update_admin']);
     Route::post('/admin/delete_user', [AdminController::class, 'delete_user']);
+    Route::post('/admin/single_product_read', [AdminController::class, 'single_product_read']);
 });
 
 // user

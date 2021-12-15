@@ -124,6 +124,13 @@
                               <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Yakin ingin menghapus data produk? Seluruh data pemesanan dan produk yang berada di keranjang pengguna terkait produk ini akan ikut terhapus.')"><i class="fa fa-trash"></i></button>
                             </form>
                           </div>
+                          <div class="col-md-4">
+                            <form action="{{__('/admin/single_product_read')}}" method="post">
+                              @csrf
+                              <input type="text" name="produk_id" value="{{$product->id}}" hidden>
+                              <button type="submit" class="btn btn-success btn-lg d-inline"><i class="fa fa-info-circle"></i>&nbsp;</button>
+                            </form>
+                          </div>
                         </div>
                       </td>
                     </tr>

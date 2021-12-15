@@ -63,7 +63,7 @@
 									<th>Status Pengiriman</th>
 									<th>Ekspedisi</th>
 									<th>Estimasi Waktu</th>
-									<th>Aksi</th>
+									<th>#</th>
 								</tr>
 							</thead>
 							<tbody>

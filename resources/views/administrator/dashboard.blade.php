@@ -88,7 +88,7 @@
                     <th scope="col">Harga</th>
                     <th scope="col">Stock</th>
                     <th scope="col">Deskripsi</th>
-                    <th scope="col" class="text-center" colspan="2">Aksi</th>
+                    <th scope="col" class="text-center" colspan="3">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -112,21 +112,23 @@
                       Waktu preorder: {{$product->masa_preorder}} <br>
                       Berat : {{$product->berat}} gram <br>
                     </td>
-                    <td colspan="2">
-                      <div class="row justify-content-center">
-                        <div class="col-md-4">
-                          <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen" aria-hidden="true"></i>&nbsp;Edit</a>
-                        </div>
-                        &nbsp;
-                        <div class="col-md-4">
-                          <form action="{{__('/admin/hapus_produk')}}" method="post">
-                            @csrf
-                            <input type="text" name="produk_id" value="{{$product->id}}" hidden>
-                            <button type="submit" class="btn btn-danger btn-lg d-inline" onclick="return confirm('Yakin ingin menghapus produk ini? Anda tidak akan dapat mengembalikan data produk setelah dihapus.')"><i class="fa fa-trash"></i>&nbsp;Hapus</button>
-                          </form>
-                        </div>
-                      </div>
-                    </td>
+                   <td>
+                      <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}"><i class="fa fa-pen" aria-hidden="true"></i>&nbsp;</a>
+                   </td>
+                   <td>
+                      <form action="{{__('/admin/hapus_produk')}}" method="post">
+                        @csrf
+                        <input type="text" name="produk_id" value="{{$product->id}}" hidden>
+                        <button type="submit" class="btn btn-danger btn-lg d-inline" onclick="return confirm('Yakin ingin menghapus produk ini? Anda tidak akan dapat mengembalikan data produk setelah dihapus.')"><i class="fa fa-trash"></i>&nbsp;</button>
+                      </form>
+                   </td>
+                   <td>
+                      <form action="{{__('/admin/single_product_read')}}" method="post">
+                        @csrf
+                        <input type="text" name="produk_id" value="{{$product->id}}" hidden>
+                        <button type="submit" class="btn btn-success btn-lg d-inline"><i class="fa fa-info-circle"></i>&nbsp;</button>
+                      </form>
+                   </td>
                   </tr>
                   @endforeach
                   <tr>

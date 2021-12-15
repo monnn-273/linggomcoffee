@@ -1,7 +1,7 @@
 @extends('administrator.headerfooter')
 
 @section('title')
-  <title>{{config('app_name','Linggom Coffee')}} - Detail Produk </title>
+  <title>{{config('app_name','Linggom Coffee')}} - Edit Produk </title>
 @endsection('title')
 
 

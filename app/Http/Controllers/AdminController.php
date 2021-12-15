@@ -60,7 +60,8 @@ class AdminController extends Controller
         return view('administrator.history', compact('bills','cartDetails'));
     }
 
-    public function single_product(Request $request){
+    public function single_product(Request $request)
+    {
         $id = $request->product_id;    
         $product = Product::find($id);
 
@@ -250,6 +251,13 @@ class AdminController extends Controller
         return redirect('/admin/users')->withSuccess('Data Pengguna berhasil Dihapus!');
     }
 
+    public function single_product_read(Request $request)
+    {
+        $id = $request->produk_id;    
+        $product = Product::find($id);
+
+       return view('administrator.single_product2', compact('product'));
+    }
 
     
 }
