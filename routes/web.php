@@ -56,6 +56,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::post('/user/addBill', [UserController::class, 'addBill']);
     Route::get('/user/history', [UserController::class, 'history']);
     Route::post('/user/bill', [UserController::class, 'bill_page']);
+    Route::post('/user/payment_evd', [UserController::class, 'payment_evd']);
 
     //untuk keperluan ongkir
     Route::get('/province/{id}/cities', [UserController::class,'getCities']);

@@ -237,5 +237,30 @@ class UserController extends Controller
         return response()->json($cost);
     }
 
+    public function payment_evd(Request $request)
+    {
+      $bill = Bill::find($request->bill_id);
+      if($request->hasFile('payment_evd'))
+      {
+
+          //hapus foto yang lama 
+          //memeriksa validasi inputan file gambar
+          $this->validate($request, [
+              'payment_evd' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+          ]);
+          $location = public_path('images');
+          $request-> file('payment_evd')->move($location, $request->file('payment_evd')->getClientOriginalName());
+          $bill->payment_evd = $request->file('payment_evd')->getClientOriginalName();
+          $bill->save();
+      }
+
+      Bill::where('id', $request->bill_id)->update([
+        'payment_status' => 'Sedang menunggu verifikasi',
+      ]);
+
+      return redirect('/user/history')->with('status','Bukti Pembayaran Terkirim!');
+      
+    }
+
 
 }

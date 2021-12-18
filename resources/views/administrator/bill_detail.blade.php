@@ -65,6 +65,7 @@
                     <th scope="col">Total Pembayaran</th>
                     <th scope="col">Status Pengiriman</th>
                     <th scope="col">Status Pembayaran</th>
+                    <th scope="col">Bukti Pembayaran</th>
                   </tr>
                 </thead>
                 <tbody class="list">         
@@ -91,6 +92,13 @@
                     </td>
                     <td>
                       {{$bill[0]->payment_status}}
+                    </td>
+                    <td>
+                      @if($bill[0]->payment_evd != NULL)
+                        <img src="../images/{{$bill[0]->payment_evd}}" alt="bukti_pembayaran" style="width:300px; height:400px">
+                      @else
+                        Belum di-upload.
+                      @endif
                     </td>
                   </tr>
                   <hr>

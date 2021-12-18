@@ -2,6 +2,7 @@
 	//Untuk menampilkan jumlah barang dalam cart
 	use App\Models\Cart;
 	$counter = Cart::where('customerId', Auth::user()->id)->count();
+
 ?>
 
 @extends('user.headerfooter')
@@ -105,8 +106,17 @@
 											</form>
 										</td>
 										<td class="price">@currency($cart->payment)</td>
+
+
 									</tr>								
 								@endforeach
+								<tr>
+									<td colspan="7">
+										<div class="justify-content-end">
+											Total : @currency($total)
+										</div>
+									</td>
+								</tr>
 								<!-- END TR-->
 							</tbody>
 						</table>

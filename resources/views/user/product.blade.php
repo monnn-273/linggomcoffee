@@ -22,20 +22,19 @@
 @section('content')
 
     <!-- HERO SECTION -->
-    <section class="home-slider owl-carousel">
-
+	<section class="home-slider owl-carousel">
         <!--SLIDER  ITEM 1  -->
         <div class="slider-item" style="background-image: url({{asset('../images/lico-black-1.png')}});">
             <div class="overlay"></div>
                 <div class="container">
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                         <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                            <span class="subheading">Welcome</span>
-                            <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-                            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                            <p>
-                                <a href="{__('/user/dashboard')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Home</a>
-                            </p>
+                        <span class="subheading">Welcome</span>
+                        <h1 class="mb-4">Dairi Pride, Sidikalang Coffee</h1>
+                        <p class="mb-4 mb-md-5">Produk kopi pilihan terbaik, hanya dari Kota Kopi.</p>
+                        <p>
+                            <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
+                        </p>
                         </div>
                     </div>
                 </div>
@@ -48,10 +47,10 @@
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                         <div class="col-md-8 col-sm-12 text-center ftco-animate">
                             <span class="subheading">Welcome</span>
-                            <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-                            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                            <h1 class="mb-4">Aroma &amp; Rasa Kopi yang Khas</h1>
+                            <p class="mb-4 mb-md-5">Kopi Sidikalang terkenal akan aroma dan rasanya yang membuat kecanduan. Tentunya seluruh produk di Linggom Coffee menggunakan kopi asli Sidikalang!</p>
                             <p>
-                                <a href="{{__('/user/dashboard')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Home</a>
+                                <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
                             </p>
                         </div>
                     </div>
@@ -66,10 +65,10 @@
                     <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                         <div class="col-md-8 col-sm-12 text-center ftco-animate">
                             <span class="subheading">Welcome</span>
-                            <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-                            <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                            <p> 
-                                <a href="{{__('/user/dashboard')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Home</a>
+                            <h1 class="mb-4">Proses Pengolahan yang Alami dan Tradisional!</h1>
+                            <p class="mb-4 mb-md-5">Mulai dari penjemuran, penggilingan, penggongsengan, dan pengemasan dilakukan secara alami dan melibatkan stakeholder dari hulu ke hilir.</p>
+                            <p>
+                                <a href="{{__('/user/product')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
                             </p>
                         </div>
                     </div>
@@ -79,6 +78,7 @@
     </section>
     <!-- AKHIR HERO SECTION-->
 
+    <!-- PRODUCTS -->
     <section class="ftco-menu mb-5 pb-5">
     	<div class="container">
 
@@ -142,5 +142,6 @@
 		    </div>
 		</div>
     </section>
+    <!-- END PRODUCTS -->
 
 @endsection('content')

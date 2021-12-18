@@ -68,8 +68,7 @@
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-
-            <!-- RESPONSIVE -->
+            @yield('search')
             <ul class="navbar-nav align-items-center  ml-md-auto ">
               <li class="nav-item d-xl-none">
                 <!-- Sidenav toggler -->

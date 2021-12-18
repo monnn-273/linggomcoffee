@@ -109,10 +109,31 @@
 										</td>
 										<td> 
 											@if($bill->payment_status == "not verified")
-												<!-- redirect ke wa business -->
-												<a class="btn btn-outline-primary" href="https://wa.me/6285362888055">Kirim Bukti pembayaran</a>
+												@if($bill->payment_evd != NULL)
+													<i class="fa fa-clock"></i> &nbsp; Sedang menunggu verifikasi
+												@else
+												<!-- form input bukti pembayaran-->
+												<div class="container">
+												<form action="{{__('/user/payment_evd')}}" method="POST" enctype="multipart/form-data">
+													@csrf
+													<!-- hidden input -->
+													<input type="hidden" name="bill_id" value="{{$bill->id}}">
+													<div class="form-group">
+														<div class="row justify-content">
+															<div class="col-md-12">
+																<input type="file" name="payment_evd" class="file-input">
+															</div>
+															&nbsp;
+															<div class="col-md-12">
+																<button class="btn btn-primary btn-outline-primary" type="submit"><p class="text-white">Kirim Bukti Pembayaran</p></button>
+															</div>
+														</div>
+													</div>
+												</form>
+												</div>
+												@endif
 											@else
-											<i class="fa fa-check"></i> &nbsp; Bukti pembayaran terverifikasi 
+												<i class="fa fa-check"></i> &nbsp; Bukti pembayaran terverifikasi 
 											@endif
 										</td>
 									</tr>

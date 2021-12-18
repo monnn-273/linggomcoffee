@@ -9,6 +9,8 @@ use App\Models\CartDetail;
 use App\Models\Cart;
 use App\Models\Bill;
 use App\Models\Expedition;
+use Carbon\Carbon;
+
 
 
 class AdminController extends Controller
@@ -258,6 +260,9 @@ class AdminController extends Controller
 
        return view('administrator.single_product2', compact('product'));
     }
+
+    
+
 
     
 }
