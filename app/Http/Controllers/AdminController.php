@@ -38,7 +38,7 @@ class AdminController extends Controller
     {
         $bills = Bill::where('payment_status','not verified')
                 ->orWhere('shipping_status','!=','sudah dikirim')
-                ->get();
+                ->paginate(5);
         $cartDetails = CartDetail::all(); 
         return view('administrator.order_list',compact('bills','cartDetails'));
     }

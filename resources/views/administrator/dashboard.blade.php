@@ -189,7 +189,11 @@
                       @endforeach
                     </td>
                     <td>
-                      {{$bill->payment_status}}
+                      @if($bill->payment_status == 'wait')
+                        waiting for verification
+                      @else
+                        {{$bill->payment_status}}
+                      @endif
                     </td>
                     <td>
                       {{$bill->shipping_status}}

@@ -30,7 +30,7 @@
                             <input type="text" name="role" value="user" hidden> 
 		      		        <div class="form-group">
 		      			        <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
-		      			            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap" required name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
+		      			            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Lengkap *" required name="name" value="{{ old('name') }}" autocomplete="name" autofocus>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
 		      		        </div>
                             <div class="form-group">
                                 <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-envelope"></span></div>
-                                    <input id="email" type="email" placeholder="Alamat Email"class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" type="email" placeholder="Alamat Email *"class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -48,7 +48,7 @@
 		      		        </div>
 	                        <div class="form-group">
 	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                <input id="password" placeholder="Kata Sandi" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <input id="password" placeholder="Kata Sandi *" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -57,7 +57,25 @@
 	                        </div>
                             <div class="form-group">
 	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
-                                <input id="password-confirm" type="password"  placeholder="Konfirmasi Kata Sandi" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password"  placeholder="Konfirmasi Kata Sandi *" class="form-control" name="password_confirmation" required autocomplete="new-password">
+	                        </div>
+                            <div class="form-group">
+	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-map-marker"></span></div>
+                                <input id="address" type="text"  placeholder="Alamat Domisili" class="form-control" name="address">
+                                @error('address')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+	                        </div>
+                            <div class="form-group">
+	            	            <div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-phone"></span></div>
+                                <input id="no_telp" type="text"  placeholder="Nomor Telephone" class="form-control" name="no_telp">
+                                @error('no_telp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
 	                        </div>
                             <br>
                             <div class="form-group container">

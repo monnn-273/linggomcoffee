@@ -91,7 +91,11 @@
                       {{$bill[0]->shipping_status}}
                     </td>
                     <td>
-                      {{$bill[0]->payment_status}}
+                      @if($bill[0]->payment_status == 'wait')
+                        waiting for verification
+                      @else
+                        {{$bill[0]->payment_status}}
+                      @endif
                     </td>
                     <td>
                       @if($bill[0]->payment_evd != NULL)

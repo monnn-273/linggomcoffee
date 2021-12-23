@@ -61,83 +61,97 @@
                 </div>
               </div>
               <div class="card-body">
-              <table class="table align-items-center table-flush">
-                  <thead class="thead-light">
-                    <tr>
-                      <th>No</th>
-                      <th>Customer</th>
-                      <th>Daftar Pesanan</th>
-                      <th>Total Pembayaran</th>
-                      <th>Status Pengiriman</th>
-                      <th colspan="3">Aksi</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @if($bills->count() == 0)
-                    <tr>
-                      <td colspan="3">
-                        <h5>Saat ini Anda belum menerima pesanan apapun.</h5>
-                      </td>
-                    </tr>
-                    @endif
-                    @php($i=1)
-                    @foreach ($bills as $bill)
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
                       <tr>
-                        <td >{{$i++}}</td>
-                        <td><p class="text-sm">{{$bill->customer->name}} </p></td>
-                        <td>
-                        @foreach($cartDetails as $cartDetail)
-										    	@if($cartDetail->bill_id == $bill->id)
-												    {{$cartDetail->products->nama_produk}} x <strong>{{$cartDetail->quantity}}</strong> <br>
-										      @endif
-										    @endforeach	
-                        </td>
-                        <td>
-                          @currency($bill->payment)
-                        </td>
-                        <td>
-                          {{$bill->shipping_status}}
-                        </td>
+                        <th>No</th>
+                        <th>Customer</th>
+                        <th>Daftar Pesanan</th>
+                        <th>Total Pembayaran</th>
+                        <th>Status Pengiriman</th>
+                        <th colspan="3">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @if($bills->count() == 0)
+                      <tr>
                         <td colspan="3">
-                          <div class="row justify-content-between">
-
-                            <div class="col-md-3">
-                              <form action="{{__('/admin/editBills')}}" method="post">
-                                @csrf 
-                                <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
-                                <button type="submit" class="btn btn-success " href="{{__('/admin/editBills')}}"><i class="fa fa-pen" aria-hidden="true"></i></button>
-                              </form>
-                            </div>
-                            <div class="col-md-3">
-                              <form action="{{__('/admin/deleteBills')}}" method="post">
-                                @csrf
-                                <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
-                                &nbsp;<button class="btn btn-danger" href="{{__('/admin/deleteBills')}}" onclick="return confirm('Apakah Anda yakin ingin menghapus data billing ini? Anda tidak akan dapat mengembalikan data yang telah dihapus.')"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                              </form>
-                            </div>
-                            <div class="col-md-3">
-                              <form action="{{__('/admin/billDetail')}}" method="get">
-                                @csrf
-                                <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
-                                <button class="btn btn-info"><i class="fa fa-info-circle"></i></button>
-                              </form>
-                            </div>
-                          </div>
+                          <h5>Saat ini Anda belum menerima pesanan apapun.</h5>
                         </td>
                       </tr>
-                      @endforeach
-                  </tbody>
-                </table>
+                      @endif
+                      @php($i=1)
+                      @foreach ($bills as $bill)
+                        <tr>
+                          <td >{{$i++}}</td>
+                          <td><p class="text-sm">{{$bill->customer->name}} </p></td>
+                          <td>
+                          @foreach($cartDetails as $cartDetail)
+                            @if($cartDetail->bill_id == $bill->id)
+                              {{$cartDetail->products->nama_produk}} x <strong>{{$cartDetail->quantity}}</strong> <br>
+                            @endif
+                          @endforeach	
+                          </td>
+                          <td>
+                            @currency($bill->payment)
+                          </td>
+                          <td>
+                            {{$bill->shipping_status}}
+                          </td>
+                          <td colspan="3">
+                            <div class="row justify-content-between">
+
+                              <div class="col-md-3">
+                                <form action="{{__('/admin/editBills')}}" method="post">
+                                  @csrf 
+                                  <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
+                                  <button type="submit" class="btn btn-success " href="{{__('/admin/editBills')}}"><i class="fa fa-pen" aria-hidden="true"></i></button>
+                                </form>
+                              </div>
+                              <div class="col-md-3">
+                                <form action="{{__('/admin/deleteBills')}}" method="post">
+                                  @csrf
+                                  <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
+                                  &nbsp;<button class="btn btn-danger" href="{{__('/admin/deleteBills')}}" onclick="return confirm('Apakah Anda yakin ingin menghapus data billing ini? Anda tidak akan dapat mengembalikan data yang telah dihapus.')"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </form>
+                              </div>
+                              <div class="col-md-3">
+                                <form action="{{__('/admin/billDetail')}}" method="get">
+                                  @csrf
+                                  <input type="text" value="{{$bill->id}}" name="bill_id" hidden>
+                                  <button class="btn btn-info"><i class="fa fa-info-circle"></i></button>
+                                </form>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <!-- akhir product list -->
 
+
+        <!-- Pagination section -->
+        <div class="box-footer">
+          <div class="pull-left">
+            <nav aria-label="...">
+              <ul class="pagination">
+                <li class="page-item">{{$bills->links("pagination::bootstrap-4")}}</li>
+              </ul>
+            </nav>
+          </div>
         </div>
-        </div>
+        <!-- End pagination -->
       </div>
+    </div>
   </div>
+</div>
   <!-- required scripts -->
   @include('sweetalert::alert')
 @endsection ('content')

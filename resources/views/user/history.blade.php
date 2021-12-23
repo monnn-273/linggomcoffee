@@ -88,7 +88,11 @@
 										</td>
 										<td>@currency($bill->payment + $bill->ongkir)</td>
 										<td>
-											{{$bill->payment_status}}
+											@if($bill->payment_status == 'wait')
+												Sedang menunggu verifikasi
+											@else
+												{{$bill->payment_status}}
+											@endif
 										</td>
 										<td>
 											{{$bill->shipping_status}}
@@ -108,10 +112,9 @@
 											@endforeach
 										</td>
 										<td> 
-											@if($bill->payment_status == "not verified")
-												@if($bill->payment_evd != NULL)
-													<i class="fa fa-clock"></i> &nbsp; Sedang menunggu verifikasi
-												@else
+											@if($bill->payment_status == 'wait')
+												<i class="fa fa-clock"></i> &nbsp; Sedang menunggu verifikasi
+											@elseif($bill->payment_status == "not verified")
 												<!-- form input bukti pembayaran-->
 												<div class="container">
 												<form action="{{__('/user/payment_evd')}}" method="POST" enctype="multipart/form-data">
@@ -131,7 +134,6 @@
 													</div>
 												</form>
 												</div>
-												@endif
 											@else
 												<i class="fa fa-check"></i> &nbsp; Bukti pembayaran terverifikasi 
 											@endif

@@ -63,7 +63,7 @@
 				<h1 class="mb-4">Proses Pengolahan yang Alami dan Tradisional!</h1>
 				<p class="mb-4 mb-md-5">Mulai dari penjemuran, penggilingan, penggongsengan, dan pengemasan dilakukan secara alami dan melibatkan stakeholder dari hulu ke hilir.</p>
 				<p>
-					<a href="{{__('/user/dashboard')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
+					<a href="{{__('/user/products')}}" class="btn btn-primary p-3 px-xl-4 py-xl-3">Pesan Sekarang</a> 
 					<a href="{{__('/products')}}" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">Lihat Produk</a>
 				</p>
 			</div>

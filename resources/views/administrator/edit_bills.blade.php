@@ -113,9 +113,17 @@
                             </td>
                             <td>
                               <select name="payment_status" id="" class="form-control">
-                                <option value="{{$bill[0]->payment_status}}" selected>{{$bill[0]->payment_status}}</option>
-                                <option value="verified">verified</option>
+                                <option value="{{$bill[0]->payment_status}}" selected>
+                                  @if($bill[0]->payment_status == 'wait')
+                                    waiting for verification
+                                  @else
+                                  {{$bill[0]->payment_status}}
+                                  @endif
+                                </option>
                                 <option value="not verified">not verified</option>
+                                <option value="wait">waiting for confirmation</option>
+                                <option value="verified">verified</option>
+                                
                               </select>
                             </td>
                         </tr>
